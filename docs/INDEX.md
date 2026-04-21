@@ -20,6 +20,8 @@ The Tetragrammatron is a constitutional computing framework where the 16-bit wor
 | [WITNESS.md](WITNESS.md) | Witness pack generator |
 | [ESP32.md](ESP32.md) | ESP32 hardware implementation |
 | [HOLEMAP.md](HOLEMAP.md) | Lattice visualization |
+| [GPU.md](GPU.md) | Full GPU + IVSHMEM pipeline |
+| [TCG.md](TCG.md) | TCG integration + cardinality/chirality |
 
 ## Architecture
 

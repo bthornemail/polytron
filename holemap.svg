@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1048" height="968" viewBox="0 0 1048 968" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="g"><stop offset="0%" stop-color="#00FF88"/><stop offset="100%" stop-color="#004422"/></radialGradient>
+    <radialGradient id="h0"><stop offset="0%" stop-color="#FF4444"/><stop offset="100%" stop-color="#220000"/></radialGradient>
+    <radialGradient id="h1"><stop offset="0%" stop-color="#FF6644"/><stop offset="100%" stop-color="#220000"/></radialGradient>
+    <radialGradient id="h2"><stop offset="0%" stop-color="#FF8844"/><stop offset="100%" stop-color="#220000"/></radialGradient>
+    <radialGradient id="h3"><stop offset="0%" stop-color="#FFAA44"/><stop offset="100%" stop-color="#220000"/></radialGradient>
+    <radialGradient id="h4"><stop offset="0%" stop-color="#FFCC44"/><stop offset="100%" stop-color="#220000"/></radialGradient>
+    <radialGradient id="h5"><stop offset="0%" stop-color="#FFEE44"/><stop offset="100%" stop-color="#220000"/></radialGradient>
+    <radialGradient id="h6"><stop offset="0%" stop-color="#CCFF44"/><stop offset="100%" stop-color="#220000"/></radialGradient>
+    <radialGradient id="h7"><stop offset="0%" stop-color="#88FF44"/><stop offset="100%" stop-color="#220000"/></radialGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#0A0A12"/>
+  <text x="484" y="35" fill="#FFF" font-size="20" text-anchor="middle" font-family="monospace">VOID-SID HOLE MAP</text>
+  <text x="484" y="60" fill="#888" font-size="12" text-anchor="middle" font-family="monospace">Lattice Gauge Theory</text>
+  <text x="788" y="100" fill="#FFF" font-size="14" font-family="monospace">LEGEND</text>
+  <rect x="788" y="115" w="20" h="20" fill="url(#g)" stroke="#0F8"/>
+  <text x="818" y="130" fill="#0F8" font-size="12">VALID</text>
+  <rect x="788" y="167" w="20" h="20" fill="url(#h1)" stroke="#F64"/>
+  <text x="818" y="182" fill="#FAA" font-size="12">HOLO=1 (8)</text>
+  <rect x="788" y="189" w="20" h="20" fill="url(#h2)" stroke="#F64"/>
+  <text x="818" y="204" fill="#FAA" font-size="12">HOLO=2 (16)</text>
+  <rect x="788" y="211" w="20" h="20" fill="url(#h3)" stroke="#F64"/>
+  <text x="818" y="226" fill="#FAA" font-size="12">HOLO=3 (32)</text>
+  <rect x="788" y="233" w="20" h="20" fill="url(#h4)" stroke="#F64"/>
+  <text x="818" y="248" fill="#FAA" font-size="12">HOLO=4 (64)</text>
+  <rect x="788" y="299" w="20" h="20" fill="url(#h7)" stroke="#F64"/>
+  <text x="818" y="314" fill="#FAA" font-size="12">HOLO=7 (7)</text>
+  <rect x="50" y="90" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="73" y="104" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="73" y="116" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=0</text>
+  <rect x="98" y="90" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="121" y="104" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="121" y="116" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=0</text>
+  <rect x="146" y="90" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="169" y="104" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="169" y="116" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=0</text>
+  <rect x="194" y="90" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="217" y="104" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="217" y="116" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=0</text>
+  <rect x="242" y="90" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="265" y="106" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="265" y="120" fill="#FAA" font-size="9" text-anchor="middle">0xF360</text>
+  <text x="265" y="132" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="290" y="90" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="313" y="106" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="313" y="120" fill="#FAA" font-size="9" text-anchor="middle">0xF9AD</text>
+  <text x="313" y="132" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="338" y="90" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="361" y="106" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="361" y="120" fill="#FAA" font-size="9" text-anchor="middle">0x2160</text>
+  <text x="361" y="132" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="386" y="90" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="409" y="106" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="409" y="120" fill="#FAA" font-size="9" text-anchor="middle">0x63FA</text>
+  <text x="409" y="132" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="434" y="90" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="457" y="104" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="457" y="116" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=0</text>
+  <rect x="482" y="90" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="505" y="104" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="505" y="116" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=0</text>
+  <rect x="530" y="90" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="553" y="104" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="553" y="116" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=0</text>
+  <rect x="578" y="90" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="601" y="104" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="601" y="116" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=0</text>
+  <rect x="626" y="90" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="649" y="106" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="649" y="120" fill="#FAA" font-size="9" text-anchor="middle">0x574B</text>
+  <text x="649" y="132" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="674" y="90" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="697" y="106" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="697" y="120" fill="#FAA" font-size="9" text-anchor="middle">0x5D86</text>
+  <text x="697" y="132" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="722" y="90" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="745" y="106" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="745" y="120" fill="#FAA" font-size="9" text-anchor="middle">0x854B</text>
+  <text x="745" y="132" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="770" y="90" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="793" y="106" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="793" y="120" fill="#FAA" font-size="9" text-anchor="middle">0xC7D1</text>
+  <text x="793" y="132" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="50" y="138" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="73" y="152" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="73" y="164" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=1</text>
+  <rect x="98" y="138" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="121" y="152" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="121" y="164" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=1</text>
+  <rect x="146" y="138" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="169" y="152" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="169" y="164" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=1</text>
+  <rect x="194" y="138" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="217" y="152" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="217" y="164" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=1</text>
+  <rect x="242" y="138" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="265" y="154" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="265" y="168" fill="#FAA" font-size="9" text-anchor="middle">0x0AB8</text>
+  <text x="265" y="180" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="290" y="138" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="313" y="154" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="313" y="168" fill="#FAA" font-size="9" text-anchor="middle">0x4822</text>
+  <text x="313" y="180" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="338" y="138" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="361" y="154" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="361" y="168" fill="#FAA" font-size="9" text-anchor="middle">0xD8B8</text>
+  <text x="361" y="180" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="386" y="138" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="409" y="154" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="409" y="168" fill="#FAA" font-size="9" text-anchor="middle">0x9A22</text>
+  <text x="409" y="180" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="434" y="138" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="457" y="152" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="457" y="164" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=1</text>
+  <rect x="482" y="138" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="505" y="152" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="505" y="164" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=1</text>
+  <rect x="530" y="138" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="553" y="152" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="553" y="164" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=1</text>
+  <rect x="578" y="138" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="601" y="152" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="601" y="164" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=1</text>
+  <rect x="626" y="138" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="649" y="154" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="649" y="168" fill="#FAA" font-size="9" text-anchor="middle">0xAE93</text>
+  <text x="649" y="180" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="674" y="138" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="697" y="154" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="697" y="168" fill="#FAA" font-size="9" text-anchor="middle">0xEC09</text>
+  <text x="697" y="180" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="722" y="138" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="745" y="154" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="745" y="168" fill="#FAA" font-size="9" text-anchor="middle">0x7C93</text>
+  <text x="745" y="180" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="770" y="138" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="793" y="154" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="793" y="168" fill="#FAA" font-size="9" text-anchor="middle">0x3E09</text>
+  <text x="793" y="180" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="50" y="186" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="73" y="200" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="73" y="212" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=2</text>
+  <rect x="98" y="186" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="121" y="200" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="121" y="212" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=2</text>
+  <rect x="146" y="186" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="169" y="200" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="169" y="212" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=2</text>
+  <rect x="194" y="186" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="217" y="200" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="217" y="212" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=2</text>
+  <rect x="242" y="186" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="265" y="202" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="265" y="216" fill="#FAA" font-size="9" text-anchor="middle">0xE616</text>
+  <text x="265" y="228" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="290" y="186" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="313" y="202" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="313" y="216" fill="#FAA" font-size="9" text-anchor="middle">0x157F</text>
+  <text x="313" y="228" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="338" y="186" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="361" y="202" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="361" y="216" fill="#FAA" font-size="9" text-anchor="middle">0xCDB2</text>
+  <text x="361" y="228" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="386" y="186" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="409" y="202" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="409" y="216" fill="#FAA" font-size="9" text-anchor="middle">0x3EDB</text>
+  <text x="409" y="228" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="434" y="186" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="457" y="200" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="457" y="212" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=2</text>
+  <rect x="482" y="186" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="505" y="200" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="505" y="212" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=2</text>
+  <rect x="530" y="186" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="553" y="200" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="553" y="212" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=2</text>
+  <rect x="578" y="186" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="601" y="200" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="601" y="212" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=2</text>
+  <rect x="626" y="186" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="649" y="202" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="649" y="216" fill="#FAA" font-size="9" text-anchor="middle">0x423D</text>
+  <text x="649" y="228" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="674" y="186" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="697" y="202" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="697" y="216" fill="#FAA" font-size="9" text-anchor="middle">0xB154</text>
+  <text x="697" y="228" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="722" y="186" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="745" y="202" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="745" y="216" fill="#FAA" font-size="9" text-anchor="middle">0x6999</text>
+  <text x="745" y="228" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="770" y="186" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="793" y="202" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="793" y="216" fill="#FAA" font-size="9" text-anchor="middle">0x9AF0</text>
+  <text x="793" y="228" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="50" y="234" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="73" y="248" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="73" y="260" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=3</text>
+  <rect x="98" y="234" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="121" y="248" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="121" y="260" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=3</text>
+  <rect x="146" y="234" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="169" y="248" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="169" y="260" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=3</text>
+  <rect x="194" y="234" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="217" y="248" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="217" y="260" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=3</text>
+  <rect x="242" y="234" w="46" h="46" fill="url(#h1)" stroke="#F66" stroke-width="2"/>
+  <text x="265" y="250" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="265" y="264" fill="#FAA" font-size="9" text-anchor="middle">0xC737</text>
+  <text x="265" y="276" fill="#D88" font-size="7" text-anchor="middle">SING</text>
+  <rect x="290" y="234" w="46" h="46" fill="url(#h1)" stroke="#F66" stroke-width="2"/>
+  <text x="313" y="250" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="313" y="264" fill="#FAA" font-size="9" text-anchor="middle">0x85AD</text>
+  <text x="313" y="276" fill="#D88" font-size="7" text-anchor="middle">SING</text>
+  <rect x="338" y="234" w="46" h="46" fill="url(#h1)" stroke="#F66" stroke-width="2"/>
+  <text x="361" y="250" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="361" y="264" fill="#FAA" font-size="9" text-anchor="middle">0xEC93</text>
+  <text x="361" y="276" fill="#D88" font-size="7" text-anchor="middle">SING</text>
+  <rect x="386" y="234" w="46" h="46" fill="url(#h1)" stroke="#F66" stroke-width="2"/>
+  <text x="409" y="250" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="409" y="264" fill="#FAA" font-size="9" text-anchor="middle">0xAE09</text>
+  <text x="409" y="276" fill="#D88" font-size="7" text-anchor="middle">SING</text>
+  <rect x="434" y="234" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="457" y="248" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="457" y="260" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=3</text>
+  <rect x="482" y="234" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="505" y="248" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="505" y="260" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=3</text>
+  <rect x="530" y="234" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="553" y="248" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="553" y="260" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=3</text>
+  <rect x="578" y="234" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="601" y="248" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="601" y="260" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=3</text>
+  <rect x="626" y="234" w="46" h="46" fill="url(#h7)" stroke="#F66" stroke-width="2"/>
+  <text x="649" y="250" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="649" y="264" fill="#FAA" font-size="9" text-anchor="middle">0xD2EF</text>
+  <text x="649" y="276" fill="#D88" font-size="7" text-anchor="middle">HOLE</text>
+  <rect x="674" y="234" w="46" h="46" fill="url(#h7)" stroke="#F66" stroke-width="2"/>
+  <text x="697" y="250" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="697" y="264" fill="#FAA" font-size="9" text-anchor="middle">0x9075</text>
+  <text x="697" y="276" fill="#D88" font-size="7" text-anchor="middle">HOLE</text>
+  <rect x="722" y="234" w="46" h="46" fill="url(#h7)" stroke="#F66" stroke-width="2"/>
+  <text x="745" y="250" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="745" y="264" fill="#FAA" font-size="9" text-anchor="middle">0xF94B</text>
+  <text x="745" y="276" fill="#D88" font-size="7" text-anchor="middle">HOLE</text>
+  <rect x="770" y="234" w="46" h="46" fill="url(#h7)" stroke="#F66" stroke-width="2"/>
+  <text x="793" y="250" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="793" y="264" fill="#FAA" font-size="9" text-anchor="middle">0xBBD1</text>
+  <text x="793" y="276" fill="#D88" font-size="7" text-anchor="middle">HOLE</text>
+  <rect x="50" y="282" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="73" y="296" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="73" y="308" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=4</text>
+  <rect x="98" y="282" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="121" y="296" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="121" y="308" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=4</text>
+  <rect x="146" y="282" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="169" y="298" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="169" y="312" fill="#FAA" font-size="9" text-anchor="middle">0xE7DB</text>
+  <text x="169" y="324" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="194" y="282" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="217" y="298" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="217" y="312" fill="#FAA" font-size="9" text-anchor="middle">0xED16</text>
+  <text x="217" y="324" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="242" y="282" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="265" y="296" fill="#DFC" font-size="10" text-anchor="middle">B0</text>
+  <text x="265" y="308" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=4</text>
+  <rect x="290" y="282" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="313" y="296" fill="#DFC" font-size="10" text-anchor="middle">B0</text>
+  <text x="313" y="308" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=4</text>
+  <rect x="338" y="282" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="361" y="298" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="361" y="312" fill="#FAA" font-size="9" text-anchor="middle">0x6286</text>
+  <text x="361" y="324" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="386" y="282" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="409" y="298" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="409" y="312" fill="#FAA" font-size="9" text-anchor="middle">0x684B</text>
+  <text x="409" y="324" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="434" y="282" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="457" y="296" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="457" y="308" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=4</text>
+  <rect x="482" y="282" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="505" y="296" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="505" y="308" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=4</text>
+  <rect x="530" y="282" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="553" y="298" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="553" y="312" fill="#FAA" font-size="9" text-anchor="middle">0x43F0</text>
+  <text x="553" y="324" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="578" y="282" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="601" y="298" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="601" y="312" fill="#FAA" font-size="9" text-anchor="middle">0x493D</text>
+  <text x="601" y="324" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="626" y="282" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="649" y="296" fill="#DFC" font-size="10" text-anchor="middle">H0</text>
+  <text x="649" y="308" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=4</text>
+  <rect x="674" y="282" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="697" y="296" fill="#DFC" font-size="10" text-anchor="middle">H0</text>
+  <text x="697" y="308" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=4</text>
+  <rect x="722" y="282" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="745" y="298" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="745" y="312" fill="#FAA" font-size="9" text-anchor="middle">0xC6AD</text>
+  <text x="745" y="324" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="770" y="282" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="793" y="298" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="793" y="312" fill="#FAA" font-size="9" text-anchor="middle">0xCC60</text>
+  <text x="793" y="324" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="50" y="330" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="73" y="344" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="73" y="356" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=5</text>
+  <rect x="98" y="330" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="121" y="344" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="121" y="356" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=5</text>
+  <rect x="146" y="330" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="169" y="346" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="169" y="360" fill="#FAA" font-size="9" text-anchor="middle">0x1E03</text>
+  <text x="169" y="372" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="194" y="330" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="217" y="346" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="217" y="360" fill="#FAA" font-size="9" text-anchor="middle">0x5C99</text>
+  <text x="217" y="372" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="242" y="330" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="265" y="344" fill="#DFC" font-size="10" text-anchor="middle">B0</text>
+  <text x="265" y="356" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=5</text>
+  <rect x="290" y="330" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="313" y="344" fill="#DFC" font-size="10" text-anchor="middle">B0</text>
+  <text x="313" y="356" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=5</text>
+  <rect x="338" y="330" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="361" y="346" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="361" y="360" fill="#FAA" font-size="9" text-anchor="middle">0x9B5E</text>
+  <text x="361" y="372" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="386" y="330" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="409" y="346" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="409" y="360" fill="#FAA" font-size="9" text-anchor="middle">0xD9C4</text>
+  <text x="409" y="372" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="434" y="330" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="457" y="344" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="457" y="356" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=5</text>
+  <rect x="482" y="330" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="505" y="344" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="505" y="356" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=5</text>
+  <rect x="530" y="330" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="553" y="346" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="553" y="360" fill="#FAA" font-size="9" text-anchor="middle">0xBA28</text>
+  <text x="553" y="372" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="578" y="330" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="601" y="346" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="601" y="360" fill="#FAA" font-size="9" text-anchor="middle">0xF8B2</text>
+  <text x="601" y="372" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="626" y="330" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="649" y="344" fill="#DFC" font-size="10" text-anchor="middle">H0</text>
+  <text x="649" y="356" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=5</text>
+  <rect x="674" y="330" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="697" y="344" fill="#DFC" font-size="10" text-anchor="middle">H0</text>
+  <text x="697" y="356" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=5</text>
+  <rect x="722" y="330" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="745" y="346" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="745" y="360" fill="#FAA" font-size="9" text-anchor="middle">0x3F75</text>
+  <text x="745" y="372" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="770" y="330" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="793" y="346" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="793" y="360" fill="#FAA" font-size="9" text-anchor="middle">0x7DEF</text>
+  <text x="793" y="372" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="50" y="378" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="73" y="392" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="73" y="404" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=6</text>
+  <rect x="98" y="378" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="121" y="394" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="121" y="408" fill="#FAA" font-size="9" text-anchor="middle">0xD3C4</text>
+  <text x="121" y="420" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="146" y="378" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="169" y="392" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="169" y="404" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=6</text>
+  <rect x="194" y="378" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="217" y="394" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="217" y="408" fill="#FAA" font-size="9" text-anchor="middle">0x01C4</text>
+  <text x="217" y="420" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="242" y="378" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="265" y="392" fill="#DFC" font-size="10" text-anchor="middle">B0</text>
+  <text x="265" y="404" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=6</text>
+  <rect x="290" y="378" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="313" y="394" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="313" y="408" fill="#FAA" font-size="9" text-anchor="middle">0x5699</text>
+  <text x="313" y="420" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="338" y="378" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="361" y="392" fill="#DFC" font-size="10" text-anchor="middle">B0</text>
+  <text x="361" y="404" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=6</text>
+  <rect x="386" y="378" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="409" y="394" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="409" y="408" fill="#FAA" font-size="9" text-anchor="middle">0x7D3D</text>
+  <text x="409" y="420" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="434" y="378" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="457" y="392" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="457" y="404" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=6</text>
+  <rect x="482" y="378" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="505" y="394" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="505" y="408" fill="#FAA" font-size="9" text-anchor="middle">0x77EF</text>
+  <text x="505" y="420" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="530" y="378" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="553" y="392" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="553" y="404" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=6</text>
+  <rect x="578" y="378" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="601" y="394" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="601" y="408" fill="#FAA" font-size="9" text-anchor="middle">0x5C4B</text>
+  <text x="601" y="420" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="626" y="378" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="649" y="392" fill="#DFC" font-size="10" text-anchor="middle">H0</text>
+  <text x="649" y="404" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=6</text>
+  <rect x="674" y="378" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="697" y="394" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="697" y="408" fill="#FAA" font-size="9" text-anchor="middle">0xF2B2</text>
+  <text x="697" y="420" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="722" y="378" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="745" y="392" fill="#DFC" font-size="10" text-anchor="middle">H0</text>
+  <text x="745" y="404" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=6</text>
+  <rect x="770" y="378" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="793" y="394" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="793" y="408" fill="#FAA" font-size="9" text-anchor="middle">0xD916</text>
+  <text x="793" y="420" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="50" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="73" y="440" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="73" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=7</text>
+  <rect x="98" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="121" y="440" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="121" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=7</text>
+  <rect x="146" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="169" y="440" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="169" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=7</text>
+  <rect x="194" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="217" y="440" fill="#DFC" font-size="10" text-anchor="middle">U0</text>
+  <text x="217" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=7</text>
+  <rect x="242" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="265" y="440" fill="#DFC" font-size="10" text-anchor="middle">B0</text>
+  <text x="265" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=7</text>
+  <rect x="290" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="313" y="440" fill="#DFC" font-size="10" text-anchor="middle">B0</text>
+  <text x="313" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=7</text>
+  <rect x="338" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="361" y="440" fill="#DFC" font-size="10" text-anchor="middle">B0</text>
+  <text x="361" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=7</text>
+  <rect x="386" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="409" y="440" fill="#DFC" font-size="10" text-anchor="middle">B0</text>
+  <text x="409" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=7</text>
+  <rect x="434" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="457" y="440" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="457" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=7</text>
+  <rect x="482" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="505" y="440" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="505" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=7</text>
+  <rect x="530" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="553" y="440" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="553" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=7</text>
+  <rect x="578" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="601" y="440" fill="#DFC" font-size="10" text-anchor="middle">D0</text>
+  <text x="601" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=7</text>
+  <rect x="626" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="649" y="440" fill="#DFC" font-size="10" text-anchor="middle">H0</text>
+  <text x="649" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=7</text>
+  <rect x="674" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="697" y="440" fill="#DFC" font-size="10" text-anchor="middle">H0</text>
+  <text x="697" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=7</text>
+  <rect x="722" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="745" y="440" fill="#DFC" font-size="10" text-anchor="middle">H0</text>
+  <text x="745" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=7</text>
+  <rect x="770" y="426" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="793" y="440" fill="#DFC" font-size="10" text-anchor="middle">H0</text>
+  <text x="793" y="452" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=7</text>
+  <rect x="50" y="474" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="73" y="490" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="73" y="504" fill="#FAA" font-size="9" text-anchor="middle">0x9F37</text>
+  <text x="73" y="516" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="98" y="474" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="121" y="490" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="121" y="504" fill="#FAA" font-size="9" text-anchor="middle">0x95FA</text>
+  <text x="121" y="516" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="146" y="474" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="169" y="490" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="169" y="504" fill="#FAA" font-size="9" text-anchor="middle">0x4D37</text>
+  <text x="169" y="516" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="194" y="474" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="217" y="490" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="217" y="504" fill="#FAA" font-size="9" text-anchor="middle">0x0FAD</text>
+  <text x="217" y="516" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="242" y="474" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="265" y="488" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="265" y="500" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=0</text>
+  <rect x="290" y="474" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="313" y="488" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="313" y="500" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=0</text>
+  <rect x="338" y="474" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="361" y="488" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="361" y="500" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=0</text>
+  <rect x="386" y="474" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="409" y="488" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="409" y="500" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=0</text>
+  <rect x="434" y="474" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="457" y="490" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="457" y="504" fill="#FAA" font-size="9" text-anchor="middle">0x3B1C</text>
+  <text x="457" y="516" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="482" y="474" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="505" y="490" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="505" y="504" fill="#FAA" font-size="9" text-anchor="middle">0x7986</text>
+  <text x="505" y="516" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="530" y="474" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="553" y="490" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="553" y="504" fill="#FAA" font-size="9" text-anchor="middle">0xE91C</text>
+  <text x="553" y="516" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="578" y="474" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="601" y="490" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="601" y="504" fill="#FAA" font-size="9" text-anchor="middle">0xAB86</text>
+  <text x="601" y="516" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="626" y="474" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="649" y="488" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="649" y="500" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=0</text>
+  <rect x="674" y="474" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="697" y="488" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="697" y="500" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=0</text>
+  <rect x="722" y="474" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="745" y="488" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="745" y="500" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=0</text>
+  <rect x="770" y="474" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="793" y="488" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="793" y="500" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=0</text>
+  <rect x="50" y="522" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="73" y="538" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="73" y="552" fill="#FAA" font-size="9" text-anchor="middle">0x66EF</text>
+  <text x="73" y="564" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="98" y="522" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="121" y="538" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="121" y="552" fill="#FAA" font-size="9" text-anchor="middle">0x2475</text>
+  <text x="121" y="564" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="146" y="522" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="169" y="538" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="169" y="552" fill="#FAA" font-size="9" text-anchor="middle">0xB4EF</text>
+  <text x="169" y="564" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="194" y="522" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="217" y="538" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="217" y="552" fill="#FAA" font-size="9" text-anchor="middle">0xF675</text>
+  <text x="217" y="564" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="242" y="522" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="265" y="536" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="265" y="548" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=1</text>
+  <rect x="290" y="522" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="313" y="536" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="313" y="548" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=1</text>
+  <rect x="338" y="522" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="361" y="536" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="361" y="548" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=1</text>
+  <rect x="386" y="522" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="409" y="536" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="409" y="548" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=1</text>
+  <rect x="434" y="522" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="457" y="538" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="457" y="552" fill="#FAA" font-size="9" text-anchor="middle">0xC2C4</text>
+  <text x="457" y="564" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="482" y="522" w="46" h="46" fill="url(#h3)" stroke="#F66" stroke-width="2"/>
+  <text x="505" y="538" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="505" y="552" fill="#FAA" font-size="9" text-anchor="middle">0x805E</text>
+  <text x="505" y="564" fill="#D88" font-size="7" text-anchor="middle">4CYC</text>
+  <rect x="530" y="522" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="553" y="538" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="553" y="552" fill="#FAA" font-size="9" text-anchor="middle">0x10C4</text>
+  <text x="553" y="564" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="578" y="522" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="601" y="538" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="601" y="552" fill="#FAA" font-size="9" text-anchor="middle">0x525E</text>
+  <text x="601" y="564" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="626" y="522" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="649" y="536" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="649" y="548" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=1</text>
+  <rect x="674" y="522" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="697" y="536" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="697" y="548" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=1</text>
+  <rect x="722" y="522" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="745" y="536" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="745" y="548" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=1</text>
+  <rect x="770" y="522" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="793" y="536" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="793" y="548" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=1</text>
+  <rect x="50" y="570" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="73" y="586" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="73" y="600" fill="#FAA" font-size="9" text-anchor="middle">0x8A41</text>
+  <text x="73" y="612" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="98" y="570" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="121" y="586" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="121" y="600" fill="#FAA" font-size="9" text-anchor="middle">0x7928</text>
+  <text x="121" y="612" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="146" y="570" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="169" y="586" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="169" y="600" fill="#FAA" font-size="9" text-anchor="middle">0xA1E5</text>
+  <text x="169" y="612" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="194" y="570" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="217" y="586" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="217" y="600" fill="#FAA" font-size="9" text-anchor="middle">0x528C</text>
+  <text x="217" y="612" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="242" y="570" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="265" y="584" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="265" y="596" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=2</text>
+  <rect x="290" y="570" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="313" y="584" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="313" y="596" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=2</text>
+  <rect x="338" y="570" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="361" y="584" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="361" y="596" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=2</text>
+  <rect x="386" y="570" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="409" y="584" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="409" y="596" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=2</text>
+  <rect x="434" y="570" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="457" y="586" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="457" y="600" fill="#FAA" font-size="9" text-anchor="middle">0x2E6A</text>
+  <text x="457" y="612" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="482" y="570" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="505" y="586" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="505" y="600" fill="#FAA" font-size="9" text-anchor="middle">0xDD03</text>
+  <text x="505" y="612" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="530" y="570" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="553" y="586" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="553" y="600" fill="#FAA" font-size="9" text-anchor="middle">0x05CE</text>
+  <text x="553" y="612" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="578" y="570" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="601" y="586" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="601" y="600" fill="#FAA" font-size="9" text-anchor="middle">0xF6A7</text>
+  <text x="601" y="612" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="626" y="570" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="649" y="584" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="649" y="596" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=2</text>
+  <rect x="674" y="570" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="697" y="584" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="697" y="596" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=2</text>
+  <rect x="722" y="570" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="745" y="584" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="745" y="596" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=2</text>
+  <rect x="770" y="570" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="793" y="584" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="793" y="596" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=2</text>
+  <rect x="50" y="618" w="46" h="46" fill="url(#h7)" stroke="#F66" stroke-width="2"/>
+  <text x="73" y="634" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="73" y="648" fill="#FAA" font-size="9" text-anchor="middle">0x1A93</text>
+  <text x="73" y="660" fill="#D88" font-size="7" text-anchor="middle">HOLE</text>
+  <rect x="98" y="618" w="46" h="46" fill="url(#h1)" stroke="#F66" stroke-width="2"/>
+  <text x="121" y="634" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="121" y="648" fill="#FAA" font-size="9" text-anchor="middle">0xE9FA</text>
+  <text x="121" y="660" fill="#D88" font-size="7" text-anchor="middle">SING</text>
+  <rect x="146" y="618" w="46" h="46" fill="url(#h7)" stroke="#F66" stroke-width="2"/>
+  <text x="169" y="634" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="169" y="648" fill="#FAA" font-size="9" text-anchor="middle">0x3137</text>
+  <text x="169" y="660" fill="#D88" font-size="7" text-anchor="middle">HOLE</text>
+  <rect x="194" y="618" w="46" h="46" fill="url(#h7)" stroke="#F66" stroke-width="2"/>
+  <text x="217" y="634" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="217" y="648" fill="#FAA" font-size="9" text-anchor="middle">0x73AD</text>
+  <text x="217" y="660" fill="#D88" font-size="7" text-anchor="middle">HOLE</text>
+  <rect x="242" y="618" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="265" y="632" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="265" y="644" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=3</text>
+  <rect x="290" y="618" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="313" y="632" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="313" y="644" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=3</text>
+  <rect x="338" y="618" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="361" y="632" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="361" y="644" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=3</text>
+  <rect x="386" y="618" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="409" y="632" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="409" y="644" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=3</text>
+  <rect x="434" y="618" w="46" h="46" fill="url(#h2)" stroke="#F66" stroke-width="2"/>
+  <text x="457" y="634" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="457" y="648" fill="#FAA" font-size="9" text-anchor="middle">0xD7B2</text>
+  <text x="457" y="660" fill="#D88" font-size="7" text-anchor="middle">2CYC</text>
+  <rect x="482" y="618" w="46" h="46" fill="url(#h1)" stroke="#F66" stroke-width="2"/>
+  <text x="505" y="634" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="505" y="648" fill="#FAA" font-size="9" text-anchor="middle">0x4DD1</text>
+  <text x="505" y="660" fill="#D88" font-size="7" text-anchor="middle">SING</text>
+  <rect x="530" y="618" w="46" h="46" fill="url(#h1)" stroke="#F66" stroke-width="2"/>
+  <text x="553" y="634" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="553" y="648" fill="#FAA" font-size="9" text-anchor="middle">0x24EF</text>
+  <text x="553" y="660" fill="#D88" font-size="7" text-anchor="middle">SING</text>
+  <rect x="578" y="618" w="46" h="46" fill="url(#h1)" stroke="#F66" stroke-width="2"/>
+  <text x="601" y="634" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="601" y="648" fill="#FAA" font-size="9" text-anchor="middle">0x6675</text>
+  <text x="601" y="660" fill="#D88" font-size="7" text-anchor="middle">SING</text>
+  <rect x="626" y="618" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="649" y="632" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="649" y="644" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=3</text>
+  <rect x="674" y="618" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="697" y="632" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="697" y="644" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=3</text>
+  <rect x="722" y="618" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="745" y="632" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="745" y="644" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=3</text>
+  <rect x="770" y="618" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="793" y="632" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="793" y="644" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=3</text>
+  <rect x="50" y="666" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="73" y="680" fill="#DFC" font-size="10" text-anchor="middle">U1</text>
+  <text x="73" y="692" fill="#BAC" font-size="8" text-anchor="middle">o=0 f=4</text>
+  <rect x="98" y="666" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="121" y="682" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="121" y="696" fill="#FAA" font-size="9" text-anchor="middle">0x9E4B</text>
+  <text x="121" y="708" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="146" y="666" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="169" y="680" fill="#DFC" font-size="10" text-anchor="middle">U1</text>
+  <text x="169" y="692" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=4</text>
+  <rect x="194" y="666" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="217" y="680" fill="#DFC" font-size="10" text-anchor="middle">U1</text>
+  <text x="217" y="692" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=4</text>
+  <rect x="242" y="666" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="265" y="682" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="265" y="696" fill="#FAA" font-size="9" text-anchor="middle">0x598C</text>
+  <text x="265" y="708" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="290" y="666" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="313" y="682" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="313" y="696" fill="#FAA" font-size="9" text-anchor="middle">0x1B16</text>
+  <text x="313" y="708" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="338" y="666" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="361" y="680" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="361" y="692" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=4</text>
+  <rect x="386" y="666" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="409" y="680" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="409" y="692" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=4</text>
+  <rect x="434" y="666" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="457" y="682" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="457" y="696" fill="#FAA" font-size="9" text-anchor="middle">0x78FA</text>
+  <text x="457" y="708" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="482" y="666" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="505" y="682" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="505" y="696" fill="#FAA" font-size="9" text-anchor="middle">0x3A60</text>
+  <text x="505" y="708" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="530" y="666" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="553" y="680" fill="#DFC" font-size="10" text-anchor="middle">D1</text>
+  <text x="553" y="692" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=4</text>
+  <rect x="578" y="666" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="601" y="680" fill="#DFC" font-size="10" text-anchor="middle">D1</text>
+  <text x="601" y="692" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=4</text>
+  <rect x="626" y="666" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="649" y="682" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="649" y="696" fill="#FAA" font-size="9" text-anchor="middle">0xFDA7</text>
+  <text x="649" y="708" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="674" y="666" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="697" y="682" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="697" y="696" fill="#FAA" font-size="9" text-anchor="middle">0xBF3D</text>
+  <text x="697" y="708" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="722" y="666" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="745" y="680" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="745" y="692" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=4</text>
+  <rect x="770" y="666" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="793" y="680" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="793" y="692" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=4</text>
+  <rect x="50" y="714" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="73" y="730" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="73" y="744" fill="#FAA" font-size="9" text-anchor="middle">0x2509</text>
+  <text x="73" y="756" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="98" y="714" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="121" y="730" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="121" y="744" fill="#FAA" font-size="9" text-anchor="middle">0x6793</text>
+  <text x="121" y="756" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="146" y="714" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="169" y="728" fill="#DFC" font-size="10" text-anchor="middle">U1</text>
+  <text x="169" y="740" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=5</text>
+  <rect x="194" y="714" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="217" y="728" fill="#DFC" font-size="10" text-anchor="middle">U1</text>
+  <text x="217" y="740" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=5</text>
+  <rect x="242" y="714" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="265" y="730" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="265" y="744" fill="#FAA" font-size="9" text-anchor="middle">0xA054</text>
+  <text x="265" y="756" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="290" y="714" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="313" y="730" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="313" y="744" fill="#FAA" font-size="9" text-anchor="middle">0xE2CE</text>
+  <text x="313" y="756" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="338" y="714" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="361" y="728" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="361" y="740" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=5</text>
+  <rect x="386" y="714" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="409" y="728" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="409" y="740" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=5</text>
+  <rect x="434" y="714" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="457" y="730" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="457" y="744" fill="#FAA" font-size="9" text-anchor="middle">0x8122</text>
+  <text x="457" y="756" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="482" y="714" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="505" y="730" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="505" y="744" fill="#FAA" font-size="9" text-anchor="middle">0xC3B8</text>
+  <text x="505" y="756" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="530" y="714" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="553" y="728" fill="#DFC" font-size="10" text-anchor="middle">D1</text>
+  <text x="553" y="740" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=5</text>
+  <rect x="578" y="714" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="601" y="728" fill="#DFC" font-size="10" text-anchor="middle">D1</text>
+  <text x="601" y="740" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=5</text>
+  <rect x="626" y="714" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="649" y="730" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="649" y="744" fill="#FAA" font-size="9" text-anchor="middle">0x047F</text>
+  <text x="649" y="756" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="674" y="714" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="697" y="730" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="697" y="744" fill="#FAA" font-size="9" text-anchor="middle">0x46E5</text>
+  <text x="697" y="756" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="722" y="714" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="745" y="728" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="745" y="740" fill="#BAC" font-size="8" text-anchor="middle">o=2 f=5</text>
+  <rect x="770" y="714" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="793" y="728" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="793" y="740" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=5</text>
+  <rect x="50" y="762" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="73" y="778" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="73" y="792" fill="#FAA" font-size="9" text-anchor="middle">0x81F0</text>
+  <text x="73" y="804" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="98" y="762" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="121" y="776" fill="#DFC" font-size="10" text-anchor="middle">U1</text>
+  <text x="121" y="788" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=6</text>
+  <rect x="146" y="762" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="169" y="778" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="169" y="792" fill="#FAA" font-size="9" text-anchor="middle">0xAA54</text>
+  <text x="169" y="804" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="194" y="762" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="217" y="776" fill="#DFC" font-size="10" text-anchor="middle">U1</text>
+  <text x="217" y="788" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=6</text>
+  <rect x="242" y="762" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="265" y="778" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="265" y="792" fill="#FAA" font-size="9" text-anchor="middle">0x04AD</text>
+  <text x="265" y="804" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="290" y="762" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="313" y="776" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="313" y="788" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=6</text>
+  <rect x="338" y="762" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="361" y="778" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="361" y="792" fill="#FAA" font-size="9" text-anchor="middle">0x2F09</text>
+  <text x="361" y="804" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="386" y="762" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="409" y="776" fill="#DFC" font-size="10" text-anchor="middle">B1</text>
+  <text x="409" y="788" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=6</text>
+  <rect x="434" y="762" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="457" y="778" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="457" y="792" fill="#FAA" font-size="9" text-anchor="middle">0x25DB</text>
+  <text x="457" y="804" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="482" y="762" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="505" y="776" fill="#DFC" font-size="10" text-anchor="middle">D1</text>
+  <text x="505" y="788" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=6</text>
+  <rect x="530" y="762" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="553" y="778" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="553" y="792" fill="#FAA" font-size="9" text-anchor="middle">0x0E7F</text>
+  <text x="553" y="804" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="578" y="762" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="601" y="776" fill="#DFC" font-size="10" text-anchor="middle">D1</text>
+  <text x="601" y="788" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=6</text>
+  <rect x="626" y="762" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="649" y="778" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="649" y="792" fill="#FAA" font-size="9" text-anchor="middle">0xA086</text>
+  <text x="649" y="804" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="674" y="762" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="697" y="776" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="697" y="788" fill="#BAC" font-size="8" text-anchor="middle">o=1 f=6</text>
+  <rect x="722" y="762" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="745" y="778" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="745" y="792" fill="#FAA" font-size="9" text-anchor="middle">0x8B22</text>
+  <text x="745" y="804" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="770" y="762" w="46" h="46" fill="url(#g)" stroke="#6FA" stroke-width="1"/>
+  <text x="793" y="776" fill="#DFC" font-size="10" text-anchor="middle">H1</text>
+  <text x="793" y="788" fill="#BAC" font-size="8" text-anchor="middle">o=3 f=6</text>
+  <rect x="50" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="73" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="73" y="840" fill="#FAA" font-size="9" text-anchor="middle">0x7828</text>
+  <text x="73" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="98" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="121" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="121" y="840" fill="#FAA" font-size="9" text-anchor="middle">0x3AB2</text>
+  <text x="121" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="146" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="169" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="169" y="840" fill="#FAA" font-size="9" text-anchor="middle">0x538C</text>
+  <text x="169" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="194" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="217" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="217" y="840" fill="#FAA" font-size="9" text-anchor="middle">0x1116</text>
+  <text x="217" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="242" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="265" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="265" y="840" fill="#FAA" font-size="9" text-anchor="middle">0xFD75</text>
+  <text x="265" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="290" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="313" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="313" y="840" fill="#FAA" font-size="9" text-anchor="middle">0xBFEF</text>
+  <text x="313" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="338" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="361" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="361" y="840" fill="#FAA" font-size="9" text-anchor="middle">0xD6D1</text>
+  <text x="361" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="386" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="409" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="409" y="840" fill="#FAA" font-size="9" text-anchor="middle">0x944B</text>
+  <text x="409" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="434" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="457" y="826" fill="#FFF" font-size="12" text-anchoVOID-SID HOLE MAP: 16×16 lattice, 127 holes (49.6%)
+  Holonomy 1: 8 points
+  Holonomy 2: 16 points
+  Holonomy 3: 32 points
+  Holonomy 4: 64 points
+  Holonomy 7: 7 points
+r="middle" font-weight="bold">∅</text>
+  <text x="457" y="840" fill="#FAA" font-size="9" text-anchor="middle">0xDC03</text>
+  <text x="457" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="482" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="505" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="505" y="840" fill="#FAA" font-size="9" text-anchor="middle">0x9E99</text>
+  <text x="505" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="530" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="553" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="553" y="840" fill="#FAA" font-size="9" text-anchor="middle">0xF7A7</text>
+  <text x="553" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="578" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="601" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="601" y="840" fill="#FAA" font-size="9" text-anchor="middle">0xB53D</text>
+  <text x="601" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="626" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="649" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="649" y="840" fill="#FAA" font-size="9" text-anchor="middle">0x595E</text>
+  <text x="649" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="674" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="697" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="697" y="840" fill="#FAA" font-size="9" text-anchor="middle">0x1BC4</text>
+  <text x="697" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="722" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="745" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="745" y="840" fill="#FAA" font-size="9" text-anchor="middle">0x72FA</text>
+  <text x="745" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <rect x="770" y="810" w="46" h="46" fill="url(#h4)" stroke="#F66" stroke-width="2"/>
+  <text x="793" y="826" fill="#FFF" font-size="12" text-anchor="middle" font-weight="bold">∅</text>
+  <text x="793" y="840" fill="#FAA" font-size="9" text-anchor="middle">0x3060</text>
+  <text x="793" y="852" fill="#D88" font-size="7" text-anchor="middle">8CYC</text>
+  <text x="25" y="474" fill="#AAA" font-size="11" transform="rotate(-90,25,474)">FRAME×S</text>
+  <text x="484" y="943" fill="#AAA" font-size="11" text-anchor="middle">PLANE×ORIENT</text>
+</svg>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-27 -65 130 130" font-size="9">
+<g stroke="#999" stroke-width=".3">
+<path fill="#ccc" d="M60,20v40l40-20v-40z"/>
+<path fill="#ddd" d="M60,20v40l-60-60v-40zm-30-30v40"/>
+<path fill="#eee" d="M60,20l40-20l-60-60l-40,20zm-30-30l40-20"/>
+</g>
+<path stroke="#fc0" d="M0,0l60,60"/>
+<path stroke="#0c6" d="M0,0l100,40"/>
+<path stroke="#09f" d="M0,0h100"/>
+<path stroke="#f60" d="M0,0l70-30"/>
+<path stroke="#f00" d="M0,0l40-60"/>
+<path stroke="#930" d="M0,0l0-40"/>
+<text x="-24" y="-17">1=&#8730;1</text>
+<text x="9" y="-33">&#8730;2</text>
+<text x="28" y="-19">&#8730;3</text>
+<text x="52" y="9">&#8730;6</text>
+<text x="36" y="27">&#8730;5</text>
+<text x="4" y="36">2=&#8730;4</text>
+</svg>

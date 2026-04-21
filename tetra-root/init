@@ -1,0 +1,54 @@
+#!/bin/sh
+
+echo "═══════════════════════════════════════════════════════════════"
+echo "  TETRAGRAMMATRON BLOCK CHAIN NODE"
+echo "═══════════════════════════════════════════════════════════════"
+echo ""
+echo "Active layer: US (Unit Separator, s=1)"
+echo "Backing chain: FS ← GS ← RS ← US"
+echo ""
+echo "Constitutional constants:"
+echo "  FS (0x1C): File Separator — Base layer"
+echo "  GS (0x1D): Group Separator — Constitutional C"
+echo "  RS (0x1E): Record Separator — Deltas"
+echo "  US (0x1F): Unit Separator — Active state"
+echo ""
+
+mount -t proc proc /proc 2>/dev/null || true
+mount -t sysfs sysfs /sys 2>/dev/null || true
+mount -t devtmpfs dev /dev 2>/dev/null || true
+
+# Try to start tetra-node
+if [ -x /bin/tetra-node ]; then
+    echo "Starting Tetra-Node on port 0x1F (US codepoint)..."
+    /bin/tetra-node 31 &
+fi
+
+echo "Tetra-Node block chain ready."
+echo ""
+echo "Commands: sid, chain, exit"
+
+while true; do
+    echo -n "tetra> "
+    read cmd
+    case "$cmd" in
+        sid)
+            echo "Computing SID of current state..."
+            ;;
+        chain)
+            echo "FS ← GS ← RS ← US"
+            ;;
+        info)
+            echo "Layer: US (0x1F)"
+            echo "s-bit: 1"
+            echo "Constitutional constant: 0x1D (GS)"
+            ;;
+        exit|shutdown)
+            echo "Shutting down..."
+            poweroff -f
+            ;;
+        *)
+            echo "Commands: sid, chain, info, exit"
+            ;;
+    esac
+done

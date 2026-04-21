@@ -1,0 +1,216 @@
+I'm starting over right now, everything else is just concepts.  i want to make a lisp interpreter with 
+
+atoms of the language are 
+(1 2 3) 
+(1 . (2 . (3 . nil)))
+
+operators of the language are
+&: AND - both bits must be 1
+|: OR - either bit can be 1
+^: XOR - only one bit is 1
+~: NOT - flips all bits
+<<: Left shift - multiplies by powers of 2
+>>: Right shift - divides by powers of 2
+
+types of the language are
+
+car
+cdr
+cons
+nthcdr
+nth
+setcar
+setcdr
+consp:  a custom compose that joins list of atoms both list and dot notation
+
+and this is the biggest list we can build
+(cons alist-of-terms
+      (rose . red) (lily . white) (buttercup . yellow))
+
+## 5. Symbol Substrates
+
+There are only three constitutional symbol substrates:
+
+### ASCII (1977/1986)
+
+> Control, transport, ordering, separators.
+
+
+0	1	2	3	4	5	6	7	8	9	A	B	C	D	E	F
+0x	NUL	SOH	STX	ETX	EOT	ENQ	ACK	BEL BS HT LF VT FF CR SO  SI 
+1x	DLE	DC1	DC2	DC3	DC4	NAK	SYN	ETB	CAN EM SUB ESC FS GS RS US 
+2x	 SP 	!	"	#	$	%	&	'	(	)	*	+	,	-	.	/
+3x	0	1	2	3	4	5	6	7	8	9	:	;	<	=	>	?
+4x	@	A	B	C	D	E	F	G	H	I	J	K	L	M	N	O
+5x	P	Q	R	S	T	U	V	W	X	Y	Z	[	\	]	^	_
+6x	`	a	b	c	d	e	f	g	h	i	j	k	l	m	n	o
+7x	p	q	r	s	t	u	v	w	x	y	z	{	|	}	~	DEL
+> Changed or added in 1963 version
+> Changed in both 1963 version and 1965 draft
+
+
+
+### Braille
+
+Dense state surface, occupancy witness, local bit visibility.
+
+> Official Unicode Consortium code chart (PDF)
+
+ 	0	1	2	3	4	5	6	7	8	9	A	B	C	D	E	F
+U+280x	⠀	⠁	⠂	⠃	⠄	⠅	⠆	⠇	⠈	⠉	⠊	⠋	⠌	⠍	⠎	⠏
+U+281x	⠐	⠑	⠒	⠓	⠔	⠕	⠖	⠗	⠘	⠙	⠚	⠛	⠜	⠝	⠞	⠟
+U+282x	⠠	⠡	⠢	⠣	⠤	⠥	⠦	⠧	⠨	⠩	⠪	⠫	⠬	⠭	⠮	⠯
+U+283x	⠰	⠱	⠲	⠳	⠴	⠵	⠶	⠷	⠸	⠹	⠺	⠻	⠼	⠽	⠾	⠿
+> (end of 6-dot cell patterns)
+
+U+284x	⡀	⡁	⡂	⡃	⡄	⡅	⡆	⡇	⡈	⡉	⡊	⡋	⡌	⡍	⡎	⡏
+U+285x	⡐	⡑	⡒	⡓	⡔	⡕	⡖	⡗	⡘	⡙	⡚	⡛	⡜	⡝	⡞	⡟
+U+286x	⡠	⡡	⡢	⡣	⡤	⡥	⡦	⡧	⡨	⡩	⡪	⡫	⡬	⡭	⡮	⡯
+U+287x	⡰	⡱	⡲	⡳	⡴	⡵	⡶	⡷	⡸	⡹	⡺	⡻	⡼	⡽	⡾	⡿
+U+288x	⢀	⢁	⢂	⢃	⢄	⢅	⢆	⢇	⢈	⢉	⢊	⢋	⢌	⢍	⢎	⢏
+U+289x	⢐	⢑	⢒	⢓	⢔	⢕	⢖	⢗	⢘	⢙	⢚	⢛	⢜	⢝	⢞	⢟
+U+28Ax	⢠	⢡	⢢	⢣	⢤	⢥	⢦	⢧	⢨	⢩	⢪	⢫	⢬	⢭	⢮	⢯
+U+28Bx	⢰	⢱	⢲	⢳	⢴	⢵	⢶	⢷	⢸	⢹	⢺	⢻	⢼	⢽	⢾	⢿
+U+28Cx	⣀	⣁	⣂	⣃	⣄	⣅	⣆	⣇	⣈	⣉	⣊	⣋	⣌	⣍	⣎	⣏
+U+28Dx	⣐	⣑	⣒	⣓	⣔	⣕	⣖	⣗	⣘	⣙	⣚	⣛	⣜	⣝	⣞	⣟
+U+28Ex	⣠	⣡	⣢	⣣	⣤	⣥	⣦	⣧	⣨	⣩	⣪	⣫	⣬	⣭	⣮	⣯
+U+28Fx	⣰	⣱	⣲	⣳	⣴	⣵	⣶	⣷	⣸	⣹	⣺	⣻	⣼	⣽	⣾	⣿
+> Notes
+> 1.^ As of Unicode version 17.0
+
+### Aegean Numbers
+
+Virtual address witness, ordinal symbolic indexing.
+
+> Official Unicode Consortium code chart (PDF)
+
+ 	0	1	2	3	4	5	6	7	8	9	A	B	C	D	E	F
+U+1010x	 	 	 					𐄇	𐄈	𐄉	𐄊	𐄋	𐄌	𐄍	𐄎	𐄏
+U+1011x	𐄐	𐄑	𐄒	𐄓	𐄔	𐄕	𐄖	𐄗	𐄘	𐄙	𐄚	𐄛	𐄜	𐄝	𐄞	𐄟
+U+1012x	𐄠	𐄡	𐄢	𐄣	𐄤	𐄥	𐄦	𐄧	𐄨	𐄩	𐄪	𐄫	𐄬	𐄭	𐄮	𐄯
+U+1013x	𐄰	𐄱	𐄲	𐄳				
+> Notes
+> 1.^ As of Unicode version 17.0
+> 2.^ Grey areas indicate non-assigned code points
+
+
+### ASCII (1977/1986)
+
+> Control, transport, ordering, separators.
+
+
+0	1	2	3	4	5	6	7	8	9	A	B	C	D	E	F
+0x	NUL	SOH	STX	ETX	EOT	ENQ	ACK	BEL BS HT LF VT FF CR SO  SI 
+1x	DLE	DC1	DC2	DC3	DC4	NAK	SYN	ETB	CAN EM SUB ESC FS GS RS US
+7x                                                                            DEL 
+> Changed or added in 1963 version
+> Changed in both 1963 version and 1965 draft
+
+Everything else is syntactic sugar or downstream projection.
+
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║  GAUGE TRANSITION TABLE: ASCII CODEPOINTS AS GROUP ACTIONS                     ║
+║                                                                                 ║
+║  Group G = ⟨s, p, q, r | s² = p² = q² = r² = 1⟩                                ║
+║  Actions: I=Identity, F=Flip(s), R=Rotate(plane), M=Mirror(parity)             ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────┬─────────┬────────────┬──────────────┬─────────────┬────────────────────────────┐
+│ DEC  │ HEX     │ CHAR       │ GROUP ACTION │ PARITY      │ SEMANTIC INTERPRETATION    │
+├──────┼─────────┼────────────┼──────────────┼─────────────┼────────────────────────────┤
+│ 0    │ 0x00    │ NUL        │ I            │ Invariant   │ Null gauge (no transport)  │
+│ 1    │ 0x01    │ SOH        │ I            │ Invariant   │ Start of header marker     │
+│ 2    │ 0x02    │ STX        │ I            │ Invariant   │ Start of text boundary     │
+│ 3    │ 0x03    │ ETX        │ I            │ Invariant   │ End of text boundary       │
+│ 4    │ 0x04    │ EOT        │ I            │ Invariant   │ End of transmission        │
+│ 5    │ 0x05    │ ENQ        │ I            │ Invariant   │ Enquiry (probe gauge)      │
+│ 6    │ 0x06    │ ACK        │ I            │ Invariant   │ Acknowledge (gauge valid)  │
+│ 7    │ 0x07    │ BEL        │ I            │ Invariant   │ Alert (singularity near)   │
+│ 8    │ 0x08    │ BS         │ F∘M          │ Invert      │ Backspace: undo last fold  │
+│ 9    │ 0x09    │ HT         │ p            │ Invariant   │ Tab: binary alignment      │
+│ 10   │ 0x0A    │ LF         │ q            │ Invariant   │ Line feed: decimal step    │
+│ 11   │ 0x0B    │ VT         │ r            │ Invariant   │ Vertical tab: hex nibble   │
+│ 12   │ 0x0C    │ FF         │ s            │ Flip        │ Form feed: s-bit toggle    │
+│ 13   │ 0x0D    │ CR         │ p∘q          │ Invariant   │ Carriage return: bin×dec   │
+│ 14   │ 0x0E    │ SO         │ F            │ Flip        │ Shift out: enter control   │
+│ 15   │ 0x0F    │ SI         │ F            │ Flip        │ Shift in: exit control     │
+│ 16   │ 0x10    │ DLE        │ I            │ Invariant   │ Data link escape marker    │
+│ 17   │ 0x11    │ DC1        │ p            │ Invariant   │ Device control: binary on  │
+│ 18   │ 0x12    │ DC2        │ p            │ Invariant   │ Device control: binary off │
+│ 19   │ 0x13    │ DC3        │ q            │ Invariant   │ Device control: decimal on │
+│ 20   │ 0x14    │ DC4        │ q            │ Invariant   │ Device control: decimal off│
+│ 21   │ 0x15    │ NAK        │ M            │ Invert      │ Negative ack: parity fail  │
+│ 22   │ 0x16    │ SYN        │ I            │ Invariant   │ Synchronous idle: wait     │
+│ 23   │ 0x17    │ ETB        │ I            │ Invariant   │ End transmission block     │
+│ 24   │ 0x18    │ CAN        │ F∘M∘F        │ Invert      │ Cancel: abort holonomy     │
+│ 25   │ 0x19    │ EM         │ I            │ Invariant   │ End of medium              │
+│ 26   │ 0x1A    │ SUB        │ M            │ Invert      │ Substitute: replace gauge  │
+│ 27   │ 0x1B    │ ESC        │ s            │ Flip        │ ESCAPE: enter s=1 mode     │
+│ 28   │ 0x1C    │ FS         │ r∘q          │ Invariant   │ File separator: hex×dec    │
+│ 29   │ 0x1D    │ GS         │ r∘p          │ Invariant   │ Group separator: hex×bin   │
+│ 30   │ 0x1E    │ RS         │ q∘p          │ Invariant   │ Record separator: dec×bin  │
+│ 31   │ 0x1F    │ US         │ p∘q∘r        │ Invariant   │ Unit separator: full mix   │
+├──────┼─────────┼────────────┼──────────────┼─────────────┼────────────────────────────┤
+│ 32   │ 0x20    │ SPACE      │ I            │ Invariant   │ Identity (no operation)    │
+│ 33   │ 0x21    │ !          │ M            │ Invert      │ Negation: invert parity    │
+│ 34   │ 0x22    │ "          │ I            │ Invariant   │ Quote: literal gauge       │
+│ 35   │ 0x23    │ #          │ p∘q∘r        │ Invariant   │ Hash: three-plane mix      │
+│ 36   │ 0x24    │ $          │ s∘M          │ Flip+Invert │ Dollar: value with sign    │
+│ 37   │ 0x25    │ %          │ r            │ Invariant   │ Percent: hex ratio         │
+│ 38   │ 0x26    │ &          │ p∘q          │ Invariant   │ Ampersand: bin AND dec     │
+│ 39   │ 0x27    │ '          │ I            │ Invariant   │ Apostrophe: literal        │
+│ 40   │ 0x28    │ (          │ F            │ Flip        │ Left paren: open control   │
+│ 41   │ 0x29    │ )          │ F            │ Flip        │ Right paren: close control │
+│ 42   │ 0x2A    │ *          │ p∘q∘r∘s      │ Flip        │ Star: full gauge rotation  │
+│ 43   │ 0x2B    │ +          │ s            │ Flip        │ Plus: enter UTF-7 Base64   │
+│ 44   │ 0x2C    │ ,          │ I            │ Invariant   │ Comma: pause transport     │
+│ 45   │ 0x2D    │ -          │ s            │ Flip        │ Minus: exit UTF-7 Base64   │
+│ 46   │ 0x2E    │ .          │ I            │ Invariant   │ Period: lattice point      │
+│ 47   │ 0x2F    │ /          │ I            │ Invariant   │ Slash: repeat relation     │
+├──────┼─────────┼────────────┼──────────────┼─────────────┼────────────────────────────┤
+│ 48   │ 0x30    │ 0          │ I            │ Invariant   │ Zero: null position        │
+│ 49   │ 0x31    │ 1          │ p            │ Invariant   │ One: binary unit           │
+│ 50   │ 0x32    │ 2          │ p∘p          │ Invariant   │ Two: binary pair           │
+│ 51   │ 0x33    │ 3          │ p∘p∘p        │ Invariant   │ Three: binary triple       │
+│ 52   │ 0x34    │ 4          │ q            │ Invariant   │ Four: decimal unit         │
+│ 53   │ 0x35    │ 5          │ q∘p          │ Invariant   │ Five: decimal + binary     │
+│ 54   │ 0x36    │ 6          │ r            │ Invariant   │ Six: hex unit              │
+│ 55   │ 0x37    │ 7          │ r∘p          │ Invariant   │ Seven: hex + binary        │
+│ 56   │ 0x38    │ 8          │ r∘q          │ Invariant   │ Eight: hex + decimal       │
+│ 57   │ 0x39    │ 9          │ r∘q∘p        │ Invariant   │ Nine: all three planes     │
+├──────┼─────────┼────────────┼──────────────┼─────────────┼────────────────────────────┤
+│ 58   │ 0x3A    │ :          │ M            │ Invert      │ Colon: parity assignment   │
+│ 59   │ 0x3B    │ ;          │ I            │ Invariant   │ Semicolon: statement end   │
+│ 60   │ 0x3C    │ <          │ F∘p          │ Flip        │ Less: left fold            │
+│ 61   │ 0x3D    │ =          │ I            │ Invariant   │ Equals: gauge equivalence  │
+│ 62   │ 0x3E    │ >          │ F∘p          │ Flip        │ Greater: right fold        │
+│ 63   │ 0x3F    │ ?          │ M∘F          │ Flip+Invert │ Question: probe parity     │
+│ 64   │ 0x40    │ @          │ s∘p∘q∘r      │ Flip        │ At: full context switch    │
+├──────┼─────────┼────────────┼──────────────┼─────────────┼────────────────────────────┤
+│ 65-90│ 0x41-5A │ A-Z        │ I            │ Invariant   │ Uppercase: invariant data  │
+│ 91   │ 0x5B    │ [          │ F            │ Flip        │ Left bracket: open array   │
+│ 92   │ 0x5C    │ \          │ s            │ Flip        │ Backslash: escape next     │
+│ 93   │ 0x5D    │ ]          │ F            │ Flip        │ Right bracket: close array │
+│ 94   │ 0x5E    │ ^           │ p            │ Invariant   │ Caret: XOR operator        │
+│ 95   │ 0x5F    │ _          │ I            │ Invariant   │ Underscore: identity       │
+│ 96   │ 0x60    │ `          │ I            │ Invariant   │ Backtick: literal          │
+│ 97-122│0x61-7A │ a-z        │ I            │ Invariant   │ Lowercase: invariant data  │
+│ 123  │ 0x7B    │ {          │ F            │ Flip        │ Left brace: open block     │
+│ 124  │ 0x7C    │ |          │ p            │ Invariant   │ Pipe: OR operator          │
+│ 125  │ 0x7D    │ }          │ F            │ Flip        │ Right brace: close block   │
+│ 126  │ 0x7E    │ ~          │ s            │ Flip        │ Tilde: bitwise NOT         │
+│ 127  │ 0x7F    │ DEL        │ F∘M∘F∘M      │ Invert      │ Delete: erase holonomy     │
+└──────┴─────────┴────────────┴──────────────┴─────────────┴────────────────────────────┘
+
+LEGEND:
+  I = Identity (no change)
+  F = Flip (s-bit toggle)
+  M = Mirror (parity invert)
+  p = Binary plane rotation
+  q = Decimal plane rotation
+  r = Hex plane rotation
+  s = Sign bit toggle
+  
+  Flip = Changes s-bit state (Data ↔ Control)
+  Invert = Changes parity (Even ↔ Odd permutation)
+  Invariant = Preserves both s-bit and parity

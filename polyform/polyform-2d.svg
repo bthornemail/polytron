@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <style>
+    .voxel { stroke: #333; stroke-width: 1; }
+    .true { fill: #e74c3c; }
+    .false { fill: #3498db; }
+    .gap { fill: #95a5a6; opacity: 0.5; }
+    .grid { stroke: #ddd; stroke-width: 0.5; }
+  </style>
+  <rect width="400" height="400" fill="white"/>
+  <line x1="0" y1="0" x2="0" y2="400" class="grid"/>
+  <line x1="0" y1="0" x2="400" y2="0" class="grid"/>
+  <line x1="30" y1="0" x2="30" y2="400" class="grid"/>
+  <line x1="0" y1="30" x2="400" y2="30" class="grid"/>
+  <line x1="60" y1="0" x2="60" y2="400" class="grid"/>
+  <line x1="0" y1="60" x2="400" y2="60" class="grid"/>
+  <line x1="90" y1="0" x2="90" y2="400" class="grid"/>
+  <line x1="0" y1="90" x2="400" y2="90" class="grid"/>
+  <line x1="120" y1="0" x2="120" y2="400" class="grid"/>
+  <line x1="0" y1="120" x2="400" y2="120" class="grid"/>
+  <line x1="150" y1="0" x2="150" y2="400" class="grid"/>
+  <line x1="0" y1="150" x2="400" y2="150" class="grid"/>
+  <line x1="180" y1="0" x2="180" y2="400" class="grid"/>
+  <line x1="0" y1="180" x2="400" y2="180" class="grid"/>
+  <line x1="210" y1="0" x2="210" y2="400" class="grid"/>
+  <line x1="0" y1="210" x2="400" y2="210" class="grid"/>
+  <line x1="240" y1="0" x2="240" y2="400" class="grid"/>
+  <line x1="0" y1="240" x2="400" y2="240" class="grid"/>
+  <line x1="270" y1="0" x2="270" y2="400" class="grid"/>
+  <line x1="0" y1="270" x2="400" y2="270" class="grid"/>
+  <line x1="300" y1="0" x2="300" y2="400" class="grid"/>
+  <line x1="0" y1="300" x2="400" y2="300" class="grid"/>
+  <rect x="50" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="140" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="140" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="140" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="140" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="140" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="140" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="140" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="140" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="80" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="140" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="50" width="28" height="28" class="voxel true"/>
+</svg>

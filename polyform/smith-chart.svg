@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <rect width="600" height="600" fill="white"/>
+  <circle cx="300" cy="300" r="250" fill="none" stroke="black" stroke-width="2"/>
+  <line x1="300" y1="0" x2="300" y2="600" stroke="#ddd"/>
+  <line x1="0" y1="300" x2="600" y2="300" stroke="#ddd"/>
+  <circle cx="300" cy="300" r="125.0" fill="none" stroke="#888" stroke-dasharray="4"/>
+  <circle cx="300" cy="300" r="166.7" fill="none" stroke="#888" stroke-dasharray="4"/>
+  <circle cx="300" cy="300" r="187.5" fill="none" stroke="#888" stroke-dasharray="4"/>
+  <circle cx="300" cy="300" r="200.0" fill="none" stroke="#888" stroke-dasharray="4"/>
+  <circle cx="300" cy="300" r="208.3" fill="none" stroke="#888" stroke-dasharray="4"/>
+  <line x1="300" y1="300" x2="349" y2="55" stroke="#888" stroke-dasharray="4"/>
+  <line x1="300" y1="300" x2="360" y2="58" stroke="#888" stroke-dasharray="4"/>
+  <line x1="300" y1="300" x2="379" y2="63" stroke="#888" stroke-dasharray="4"/>
+  <line x1="300" y1="300" x2="411" y2="77" stroke="#888" stroke-dasharray="4"/>
+  <line x1="300" y1="300" x2="476" y2="124" stroke="#888" stroke-dasharray="4"/>
+  <line x1="300" y1="300" x2="476" y2="476" stroke="#888" stroke-dasharray="4"/>
+  <line x1="300" y1="300" x2="411" y2="523" stroke="#888" stroke-dasharray="4"/>
+  <line x1="300" y1="300" x2="379" y2="537" stroke="#888" stroke-dasharray="4"/>
+  <line x1="300" y1="300" x2="360" y2="542" stroke="#888" stroke-dasharray="4"/>
+  <line x1="300" y1="300" x2="349" y2="545" stroke="#888" stroke-dasharray="4"/>
+</svg>

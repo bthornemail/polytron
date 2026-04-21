@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <style>
+    .voxel { stroke: #333; stroke-width: 1; }
+    .true { fill: #e74c3c; }
+    .false { fill: #3498db; }
+    .gap { fill: #95a5a6; opacity: 0.5; }
+    .grid { stroke: #ddd; stroke-width: 0.5; }
+  </style>
+  <rect width="400" height="400" fill="white"/>
+  <rect x="50" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="80" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="50" width="28" height="28" class="voxel true"/>
+  <rect x="50" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="80" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="110" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="140" y="110" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="150" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="150" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="150" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="150" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="150" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="150" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="150" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="40" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="90" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="120" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="150" y="100" width="28" height="28" class="voxel true"/>
+  <rect x="60" y="40" width="28" height="28" class="voxel true"/>
+</svg>

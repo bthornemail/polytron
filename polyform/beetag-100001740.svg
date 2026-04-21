@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <rect width="120" height="120" fill="white"/>
+  <text x="60" y="20" font-size="13" text-anchor="middle">BeeTag 6x6</text>
+  <rect x="0" y="0" width="20" height="20" fill="black"/>
+  <rect x="20" y="0" width="20" height="20" fill="black"/>
+  <rect x="40" y="0" width="20" height="20" fill="black"/>
+  <rect x="60" y="0" width="20" height="20" fill="black"/>
+  <rect x="80" y="0" width="20" height="20" fill="black"/>
+  <rect x="100" y="0" width="20" height="20" fill="black"/>
+  <rect x="0" y="20" width="20" height="20" fill="black"/>
+  <rect x="60" y="20" width="20" height="20" fill="black"/>
+  <rect x="100" y="20" width="20" height="20" fill="black"/>
+  <rect x="0" y="40" width="20" height="20" fill="black"/>
+  <rect x="80" y="40" width="20" height="20" fill="black"/>
+  <rect x="100" y="40" width="20" height="20" fill="black"/>
+  <rect x="0" y="60" width="20" height="20" fill="black"/>
+  <rect x="60" y="60" width="20" height="20" fill="black"/>
+  <rect x="100" y="60" width="20" height="20" fill="black"/>
+  <rect x="0" y="80" width="20" height="20" fill="black"/>
+  <rect x="100" y="80" width="20" height="20" fill="black"/>
+  <rect x="0" y="100" width="20" height="20" fill="black"/>
+  <rect x="20" y="100" width="20" height="20" fill="black"/>
+  <rect x="40" y="100" width="20" height="20" fill="black"/>
+  <rect x="60" y="100" width="20" height="20" fill="black"/>
+  <rect x="80" y="100" width="20" height="20" fill="black"/>
+  <rect x="100" y="100" width="20" height="20" fill="black"/>
+</svg>

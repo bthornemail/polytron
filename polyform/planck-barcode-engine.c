@@ -119,6 +119,9 @@ typedef struct {
     double epsilon;  /* Machine epsilon / Planck length */
     uint64_t time;   /* Planck time steps */
     uint32_t chirality;  /* BOM (FEFF or FFFE) */
+    uint8_t gauge_parity; /* Gauge theory parity state */
+    uint8_t gauge_sbit;   /* Gauge theory s-bit */
+    uint8_t gauge_phase;  /* Hex lattice phase (0-5) */
 } PlanckState;
 
 /* Initialize with rationalized units */
@@ -130,6 +133,9 @@ static void planck_init(PlanckState *s, uint32_t chirality) {
     s->epsilon = 1.0 / (1ULL << 52); /* Double precision epsilon */
     s->time = 0;
     s->chirality = chirality;
+    s->gauge_parity = 0;
+    s->gauge_sbit = 0;
+    s->gauge_phase = 0;
 }
 
 /* ============================================================
@@ -152,6 +158,169 @@ static double code16k_to_G(uint32_t rows, uint32_t checksum) {
     return (1.0 / (4.0 * M_PI)) * (1.0 + row_factor * check_factor * 0.01);
 }
 
+/* ============================================================
+ * GAUGE TRANSITION TABLE - ASCII as Group Actions
+ * Based on: G = ⟨s, p, q, r | s² = p² = q² = r² = 1⟩
+ * ============================================================ */
+
+typedef enum {
+    ACTION_I = 0,      /* Identity */
+    ACTION_F,          /* Flip (s-bit toggle) */
+    ACTION_M,          /* Mirror (parity invert) */
+    ACTION_P,          /* Binary plane rotation */
+    ACTION_Q,          /* Decimal plane rotation */
+    ACTION_R,          /* Hex plane rotation */
+    ACTION_FM,         /* F∘M */
+    ACTION_FMF,        /* F∘M∘F */
+    ACTION_PQ,         /* p∘q */
+    ACTION_QR,         /* q∘r */
+    ACTION_RP,         /* r∘p */
+    ACTION_PQR,        /* p∘q∘r (full cycle) */
+    ACTION_SM,         /* s∘M */
+    ACTION_SPQR,       /* s∘p∘q∘r */
+    ACTION_FP,         /* F∘p */
+    ACTION_MF,         /* M∘F */
+    ACTION_FMFM        /* F∘M∘F∘M (DELETE) */
+} GaugeAction;
+
+/* ASCII to Gauge Action lookup table (0-127) */
+static const GaugeAction ascii_gauge[128] = {
+    [0x00] = ACTION_I,  [0x01] = ACTION_I,  [0x02] = ACTION_I,
+    [0x03] = ACTION_I,  [0x04] = ACTION_I,  [0x05] = ACTION_I,
+    [0x06] = ACTION_I,  [0x07] = ACTION_I,  [0x08] = ACTION_FM,
+    [0x09] = ACTION_P,  [0x0A] = ACTION_Q,  [0x0B] = ACTION_R,
+    [0x0C] = ACTION_F,  [0x0D] = ACTION_PQ,  [0x0E] = ACTION_F,
+    [0x0F] = ACTION_F,  [0x10] = ACTION_I,  [0x11] = ACTION_P,
+    [0x12] = ACTION_P,  [0x13] = ACTION_Q,  [0x14] = ACTION_Q,
+    [0x15] = ACTION_M,  [0x16] = ACTION_I,  [0x17] = ACTION_I,
+    [0x18] = ACTION_FMF,[0x19] = ACTION_I,  [0x1A] = ACTION_M,
+    [0x1B] = ACTION_F,  [0x1C] = ACTION_QR,  [0x1D] = ACTION_RP,
+    [0x1E] = ACTION_PQ, [0x1F] = ACTION_PQR, [0x20] = ACTION_I,
+    [0x21] = ACTION_M,  [0x22] = ACTION_I,  [0x23] = ACTION_PQR,
+    [0x24] = ACTION_SM,  [0x25] = ACTION_R,  [0x26] = ACTION_PQ,
+    [0x27] = ACTION_I,  [0x28] = ACTION_F,  [0x29] = ACTION_F,
+    [0x2A] = ACTION_SPQR, [0x2B] = ACTION_F, [0x2C] = ACTION_I,
+    [0x2D] = ACTION_F,  [0x2E] = ACTION_I,  [0x2F] = ACTION_I,
+    [0x30] = ACTION_I,  [0x31] = ACTION_P,  [0x32] = ACTION_P,
+    [0x33] = ACTION_P,  [0x34] = ACTION_Q,  [0x35] = ACTION_PQ,
+    [0x36] = ACTION_R,  [0x37] = ACTION_RP,  [0x38] = ACTION_QR,
+    [0x39] = ACTION_PQR, [0x3A] = ACTION_M,  [0x3B] = ACTION_I,
+    [0x3C] = ACTION_FP,  [0x3D] = ACTION_I,  [0x3E] = ACTION_FP,
+    [0x3F] = ACTION_MF,  [0x40] = ACTION_SPQR,
+    /* Uppercase A-Z (0x41-0x5A): Identity */
+    [0x5B] = ACTION_F,  [0x5C] = ACTION_F,  [0x5D] = ACTION_F,
+    [0x5E] = ACTION_P,  [0x5F] = ACTION_I,  [0x60] = ACTION_I,
+    /* Lowercase a-z (0x61-0x7A): Identity */
+    [0x7B] = ACTION_F,  [0x7C] = ACTION_P,  [0x7D] = ACTION_F,
+    [0x7E] = ACTION_F,  [0x7F] = ACTION_FMFM
+};
+
+/* MaxiCode hex lattice state for gauge evolution */
+typedef struct {
+    double hbar;
+    uint8_t parity;
+    uint8_t s_bit;
+    uint8_t hex_phase;
+} MaxiCodeGauge;
+
+static void init_maxicode_gauge(MaxiCodeGauge *m) {
+    m->hbar = PLANCK_RATIONALIZED;
+    m->parity = 0;
+    m->s_bit = 0;
+    m->hex_phase = 0;
+}
+
+static void apply_gauge_action(MaxiCodeGauge *m, GaugeAction action) {
+    switch (action) {
+        case ACTION_I: break;
+        case ACTION_F:
+            m->s_bit ^= 1;
+            m->hbar *= (m->s_bit ? 1.001 : 0.999);
+            break;
+        case ACTION_M:
+            m->parity ^= 1;
+            m->hbar *= (m->parity ? 1.0005 : 0.9995);
+            break;
+        case ACTION_P:
+            m->hex_phase = (m->hex_phase + 1) % 6;
+            m->hbar *= 1.0001;
+            break;
+        case ACTION_Q:
+            m->hex_phase = (m->hex_phase + 2) % 6;
+            m->hbar *= 1.0002;
+            break;
+        case ACTION_R:
+            m->hex_phase = (m->hex_phase + 3) % 6;
+            m->hbar *= 1.0003;
+            break;
+        case ACTION_PQ:
+            m->hex_phase = (m->hex_phase + 3) % 6;
+            m->hbar *= 1.0004;
+            break;
+        case ACTION_QR:
+            m->hex_phase = (m->hex_phase + 5) % 6;
+            m->hbar *= 1.0005;
+            break;
+        case ACTION_RP:
+            m->hex_phase = (m->hex_phase + 4) % 6;
+            m->hbar *= 1.0006;
+            break;
+        case ACTION_PQR:
+            m->hex_phase = (m->hex_phase + 6) % 6;
+            m->hbar *= 1.0007;
+            break;
+        case ACTION_FM:
+            m->s_bit ^= 1; m->parity ^= 1;
+            m->hbar *= 0.998;
+            break;
+        case ACTION_FMF:
+            m->s_bit ^= 1; m->parity ^= 1;
+            m->hbar *= 0.997;
+            break;
+        case ACTION_SM:
+            m->s_bit ^= 1; m->parity ^= 1;
+            m->hbar *= 1.002;
+            break;
+        case ACTION_SPQR:
+            m->s_bit ^= 1;
+            m->hex_phase = (m->hex_phase + 6) % 6;
+            m->hbar *= 1.005;
+            break;
+        case ACTION_FP:
+            m->s_bit ^= 1;
+            m->hex_phase = (m->hex_phase + 1) % 6;
+            m->hbar *= 1.0015;
+            break;
+        case ACTION_MF:
+            m->parity ^= 1; m->s_bit ^= 1;
+            m->hbar *= 0.999;
+            break;
+        case ACTION_FMFM:
+            m->s_bit ^= 1; m->parity ^= 1;
+            m->s_bit ^= 1; m->parity ^= 1;
+            m->hbar *= 0.995;
+            break;
+        default: break;
+    }
+}
+
+static double maxicode_gauge_evolve(uint8_t ascii_char) {
+    static MaxiCodeGauge m;
+    static int initialized = 0;
+    if (!initialized) { init_maxicode_gauge(&m); initialized = 1; }
+    
+    if (ascii_char < 128) {
+        GaugeAction action = ascii_gauge[ascii_char];
+        apply_gauge_action(&m, action);
+    }
+    return m.hbar;
+}
+
+static void reset_maxicode_gauge(void) {
+    MaxiCodeGauge m;
+    init_maxicode_gauge(&m);
+}
+
 /* MaxiCode -> ħ (Planck constant) */
 static double maxicode_to_hbar(uint32_t mode, uint32_t ecc_words) {
     /* ħ is modulated by the finder pattern (quantum cell) */
@@ -172,7 +341,7 @@ static double beetag_to_kB(uint32_t version, uint32_t hamming) {
  * EVOLUTION - Step the physics forward
  * ============================================================ */
 
-static void evolve_planck(PlanckState *s, uint32_t barcode_word) {
+static void evolve_planck(PlanckState *s, uint32_t barcode_word, uint8_t ascii_char) {
     /* The K(p,C) function acts as the Hamiltonian */
     uint32_t sid = K(barcode_word, CHANNEL_GS);
     
@@ -185,7 +354,88 @@ static void evolve_planck(PlanckState *s, uint32_t barcode_word) {
     /* Update constants based on barcode geometry */
     s->c = aztec_to_c((fs % 32) + 1, fs);
     s->G = code16k_to_G((gs % 16) + 1, gs);
-    s->hbar = maxicode_to_hbar((rs % 6) + 2, rs);
+    
+    /* Evolve ħ using Gauge Transition Table (MaxiCode) */
+    if (ascii_char < 128) {
+        GaugeAction action = ascii_gauge[ascii_char];
+        /* Use PlanckState's gauge fields directly */
+        switch (action) {
+            case ACTION_I: break;
+            case ACTION_F:
+                s->gauge_sbit ^= 1;
+                s->hbar *= (s->gauge_sbit ? 1.001 : 0.999);
+                break;
+            case ACTION_M:
+                s->gauge_parity ^= 1;
+                s->hbar *= (s->gauge_parity ? 1.0005 : 0.9995);
+                break;
+            case ACTION_P:
+                s->gauge_phase = (s->gauge_phase + 1) % 6;
+                s->hbar *= 1.0001;
+                break;
+            case ACTION_Q:
+                s->gauge_phase = (s->gauge_phase + 2) % 6;
+                s->hbar *= 1.0002;
+                break;
+            case ACTION_R:
+                s->gauge_phase = (s->gauge_phase + 3) % 6;
+                s->hbar *= 1.0003;
+                break;
+            case ACTION_PQ:
+                s->gauge_phase = (s->gauge_phase + 3) % 6;
+                s->hbar *= 1.0004;
+                break;
+            case ACTION_QR:
+                s->gauge_phase = (s->gauge_phase + 5) % 6;
+                s->hbar *= 1.0005;
+                break;
+            case ACTION_RP:
+                s->gauge_phase = (s->gauge_phase + 4) % 6;
+                s->hbar *= 1.0006;
+                break;
+            case ACTION_PQR:
+                s->gauge_phase = (s->gauge_phase + 6) % 6;
+                s->hbar *= 1.0007;
+                break;
+            case ACTION_FM:
+                s->gauge_sbit ^= 1; s->gauge_parity ^= 1;
+                s->hbar *= 0.998;
+                break;
+            case ACTION_FMF:
+                s->gauge_sbit ^= 1; s->gauge_parity ^= 1;
+                s->hbar *= 0.997;
+                break;
+            case ACTION_SM:
+                s->gauge_sbit ^= 1; s->gauge_parity ^= 1;
+                s->hbar *= 1.002;
+                break;
+            case ACTION_SPQR:
+                s->gauge_sbit ^= 1;
+                s->gauge_phase = (s->gauge_phase + 6) % 6;
+                s->hbar *= 1.005;
+                break;
+            case ACTION_FP:
+                s->gauge_sbit ^= 1;
+                s->gauge_phase = (s->gauge_phase + 1) % 6;
+                s->hbar *= 1.0015;
+                break;
+            case ACTION_MF:
+                s->gauge_parity ^= 1; s->gauge_sbit ^= 1;
+                s->hbar *= 0.999;
+                break;
+            case ACTION_FMFM:
+                s->gauge_sbit ^= 1; s->gauge_parity ^= 1;
+                s->gauge_sbit ^= 1; s->gauge_parity ^= 1;
+                s->hbar *= 0.995;
+                break;
+            default:
+                s->hbar = maxicode_to_hbar((rs % 6) + 2, rs);
+                break;
+        }
+    } else {
+        s->hbar = maxicode_to_hbar((rs % 6) + 2, rs);
+    }
+    
     s->kB = beetag_to_kB((us % 10) + 1, us % 6);
     
     /* Time step */
@@ -457,7 +707,7 @@ int main(int argc, char *argv[]) {
         /* Barcode word from K(p,C) */
         uint32_t word = K((t * 0x10000) | ((uint32_t)(state.c * 1000)), CHANNEL_GS);
         
-        evolve_planck(&state, word);
+        evolve_planck(&state, word, CHANNEL_RS);  /* RS = MaxiCode channel */
         
         double dist = double_corner_distance(&initial, &state);
         

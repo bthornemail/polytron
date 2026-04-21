@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 75">
+  <title>BeeTag v4 Entropy</title>
+  <rect width="150" height="75" fill="white"/>
+  <rect x="135" y="0" width="15" height="15" fill="black"/>
+  <rect x="135" y="15" width="15" height="15" fill="black"/>
+  <rect x="0" y="45" width="15" height="15" fill="black"/>
+  <rect x="15" y="45" width="15" height="15" fill="black"/>
+  <rect x="30" y="45" width="15" height="15" fill="black"/>
+  <rect x="45" y="45" width="15" height="15" fill="black"/>
+  <rect x="60" y="45" width="15" height="15" fill="black"/>
+  <rect x="0" y="60" width="15" height="15" fill="black"/>
+  <rect x="15" y="60" width="15" height="15" fill="black"/>
+  <rect x="30" y="60" width="15" height="15" fill="black"/>
+  <rect x="45" y="60" width="15" height="15" fill="black"/>
+  <rect x="60" y="60" width="15" height="15" fill="black"/>
+</svg>

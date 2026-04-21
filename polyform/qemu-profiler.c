@@ -460,17 +460,51 @@ static void benchmark(int iterations) {
 }
 
 /* ============================================================
+ * PLANCK PHYSICS OUTPUT (for piping to planck-engine)
+ * ============================================================ */
+
+static void output_planck_physics(ExecutionTrace *trace) {
+    printf("# PLANCK PHYSICS TRACE\n");
+    printf("# icount,sid,layers,rows,mode,version,hamming\n");
+    
+    for (int i = 0; i < trace->count; i++) {
+        TraceEntry *e = &trace->entries[i];
+        
+        /* Map SID to barcode geometry */
+        uint32_t layers = (e->sid >> 24) & 0x1F;  /* Aztec layers (1-32) */
+        uint32_t rows = (e->sid >> 20) & 0x0F;     /* Code16K rows (1-16) */
+        uint32_t mode = (e->sid >> 16) & 0x07;     /* MaxiCode mode (2-6) */
+        uint32_t version = (e->sid >> 12) & 0x0F;  /* BeeTag version (1-10) */
+        uint32_t hamming = e->sid & 0x1F;         /* Hamming distance */
+        
+        printf("%lu,0x%08X,%u,%u,%u,%u,%u\n",
+               (unsigned long)e->icount, e->sid,
+               layers + 1, rows + 1, mode + 2, version + 1, hamming);
+    }
+}
+
+/* ============================================================
  * MAIN
  * ============================================================ */
 
 int main(int argc, char *argv[]) {
-    printf("=== QEMU Execution Trace to Polyform Converter ===\n\n");
+    /* Parse args first to check for Planck mode */
+    int planck_mode = 0;
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-p") == 0) {
+            planck_mode = 1;
+        }
+    }
+    
+    if (!planck_mode) {
+        printf("=== QEMU Execution Trace to Polyform Converter ===\n\n");
+    }
     
     const char *output_dir = "polyform";
     int num_instructions = 1000;
     int time_scale = 100;
     
-    /* Parse args */
+    /* Parse remaining args */
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-n") == 0 && i + 1 < argc) {
             num_instructions = atoi(argv[++i]);
@@ -479,12 +513,19 @@ int main(int argc, char *argv[]) {
         } else if (strcmp(argv[i], "-b") == 0 && i + 1 < argc) {
             benchmark(atoi(argv[++i]));
             return 0;
+        } else if (strcmp(argv[i], "-p") == 0) {
+            planck_mode = 1;
         }
     }
     
     /* Simulate QEMU execution trace */
     ExecutionTrace trace;
     simulate_execution(&trace, num_instructions);
+    
+    if (planck_mode) {
+        output_planck_physics(&trace);
+        return 0;
+    }
     
     printf("Trace: %d instructions (icount 0 - %lu)\n", 
            trace.count, trace.max_icount);

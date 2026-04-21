@@ -288,10 +288,128 @@ static void print_omicron(double x) {
 }
 
 /* ============================================================
+ * QEMU TRACE INPUT
+ * ============================================================ */
+
+typedef struct {
+    uint64_t icount;
+    uint32_t sid;
+    uint32_t layers;
+    uint32_t rows;
+    uint32_t mode;
+    uint32_t version;
+    uint32_t hamming;
+} QemuTraceEntry;
+
+static int read_qemu_trace(QemuTraceEntry **entries, int *count) {
+    char line[256];
+    *count = 0;
+    *entries = NULL;
+    
+    /* Skip to header line */
+    while (fgets(line, sizeof(line), stdin)) {
+        if (strncmp(line, "# PLANCK", 8) == 0) break;
+        if (line[0] == '#' && strstr(line, "icount,")) break;
+    }
+    
+    /* Check if we found a header */
+    if (strncmp(line, "# PLANCK", 8) != 0 && !strstr(line, "icount,")) {
+        /* Put line back or not in Planck mode */
+        return 0;
+    }
+    
+    /* Read data lines */
+    while (fgets(line, sizeof(line), stdin)) {
+        if (line[0] == '#' || line[0] == '\n') continue;
+        
+        QemuTraceEntry *e = realloc(*entries, (*count + 1) * sizeof(QemuTraceEntry));
+        if (!e) {
+            free(*entries);
+            return 0;
+        }
+        *entries = e;
+        
+        sscanf(line, "%lu,%x,%u,%u,%u,%u,%u",
+               (unsigned long*)&(*entries)[*count].icount,
+               &(*entries)[*count].sid,
+               &(*entries)[*count].layers,
+               &(*entries)[*count].rows,
+               &(*entries)[*count].mode,
+               &(*entries)[*count].version,
+               &(*entries)[*count].hamming);
+        (*count)++;
+    }
+    
+    return (*count > 0) ? 1 : 0;
+}
+
+/* ============================================================
  * MAIN - Planck Barcode Physics Engine
  * ============================================================ */
 
 int main(int argc, char *argv[]) {
+    int pipe_mode = 0;
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-p") == 0 || strcmp(argv[i], "--pipe") == 0) {
+            pipe_mode = 1;
+        }
+    }
+    
+    /* Check for piped QEMU trace input */
+    QemuTraceEntry *trace_entries = NULL;
+    int trace_count = 0;
+    int has_input = read_qemu_trace(&trace_entries, &trace_count);
+    
+    if (has_input && pipe_mode) {
+        printf("╔════════════════════════════════════════════════════════════╗\n");
+        printf("║     PLANCK BARCODE PHYSICS ENGINE (QEMU PIPELINE)       ║\n");
+        printf("║     ===================================================    ║\n");
+        printf("║  Input: %d trace entries from QEMU profiler              ║\n", trace_count);
+        printf("╚════════════════════════════════════════════════════════════╝\n\n");
+        
+        PlanckState state;
+        planck_init(&state, BOM_FEFF);
+        
+        printf("=== QEMU TRACE EVOLUTION ===\n");
+        printf("%-8s %-12s %-12s %-12s %-12s %-12s\n", 
+               "icount", "c (Aztec)", "G (C16K)", "ħ (Maxi)", "kB (Bee)", "Distance");
+        printf("%-8s %-12s %-12s %-12s %-12s %-12s\n", 
+               "------", "---------", "---------", "----------", "---------", "--------");
+        
+        PlanckState initial = state;
+        
+        for (int i = 0; i < trace_count; i++) {
+            QemuTraceEntry *e = &trace_entries[i];
+            
+            /* Update physics from trace */
+            state.c = aztec_to_c(e->layers, e->sid & 0xFF);
+            state.G = code16k_to_G(e->rows, e->sid % 107);
+            state.hbar = maxicode_to_hbar(e->mode, e->sid & 0x1F);
+            state.kB = beetag_to_kB(e->version, e->hamming % 6);
+            state.time = e->icount;
+            
+            double dist = double_corner_distance(&initial, &state);
+            
+            printf("%-8lu %-12.8f %-12.8f %-12.8f %-12.8f %-12.8e\n",
+                   (unsigned long)e->icount, state.c, state.G, state.hbar, state.kB, dist);
+        }
+        
+        /* Factoradic representation of final state */
+        printf("\n=== FINAL STATE FACTORADIC ===\n");
+        FactoradicNum f;
+        physics_to_factoradic(state.c, &f, 8);
+        printf("c: ");
+        print_factoradic(&f, 8);
+        
+        physics_to_factoradic(1.0/state.G, &f, 8);
+        printf("1/G: ");
+        print_factoradic(&f, 8);
+        
+        free(trace_entries);
+        return 0;
+    }
+    
+    /* Original standalone mode */
     printf("╔════════════════════════════════════════════════════════════╗\n");
     printf("║     PLANCK BARCODE PHYSICS ENGINE                      ║\n");
     printf("║     =============================                     ║\n");

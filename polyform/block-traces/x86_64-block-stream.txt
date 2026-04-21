@@ -1,0 +1,6 @@
+x86_64 Block Stream Events
+=========================
+Time,Backing,Active,Sectors,Action
+0,A,B,0,identity
+1,B,C,1024,q∘p
+2,C,D,2048,r∘q

@@ -1,0 +1,7 @@
+# Block stream events mapped to Planck physics
+# Format: icount,event,sectors,ascii_char,action
+0,stream_start,0,0x1C,identity
+1,block_copy_B_C,1024,0x1D,q∘p
+2,block_copy_B_C,2048,0x1D,q∘p  
+3,stream_complete,3072,0x1E,r∘q
+4,backing_file_update,4096,0x1F,r∘q∘p

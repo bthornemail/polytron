@@ -1,0 +1,16 @@
+ARM64/Termux Block Stream Events
+===============================
+Architecture: x86_64
+Platform: Linux (modified Harvard)
+
+Block Layer:
+  [A] Base: mmcblk0p1 (boot)
+  [B] Overlay 1: overlayfs (root)
+  [C] Overlay 2: tmpfs (runtime)
+  [D] Active: memory (current)
+
+Stream Events (simulated):
+Time,Backing,Active,Sectors,Action
+0,A,B,0,identity
+1,B,C,512,q∘p  
+2,C,D,1024,r∘q

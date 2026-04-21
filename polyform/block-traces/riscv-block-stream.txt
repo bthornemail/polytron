@@ -1,0 +1,10 @@
+RISC-V Block Stream Events
+==========================
+BOM: 0xFFFE
+Chirality: Left-handed
+Endianness: x86_64
+
+Time,Backing,Active,Sectors,Action
+0,A,B,0,identity (I)
+1,B,C,2048,q∘p (bi-endian switch possible)
+2,C,D,4096,r∘q (full gauge flow)

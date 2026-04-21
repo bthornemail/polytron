@@ -1,0 +1,16 @@
+iMIMO Block Stream with IVSHMEM/NUMA
+=====================================
+NUMA Nodes: 4
+IVSHMEM: /dev/shm/ivshmem (simulated)
+
+Block layers mapped to NUMA nodes:
+  [A] Base:      Node 0 (Identity)
+  [B] Overlay 1:  Node 1 (p-action, binary)
+  [C] Overlay 2:  Node 2 (q-action, decimal)
+  [D] Active:    Node 3 (r-action, hex)
+
+Stream [B]→[C]:  Cross-node copy (q∘r gauge propagation)
+Stream [C]→[D]:  Cross-node copy (r∘p gauge propagation)
+
+IVSHMEM = Gauge connection (Aμ field) between NUMA nodes.
+Block streaming is non-local gauge transport.

@@ -1,0 +1,12 @@
+ESP32 MEMORY TOPOLOGY → BARCODE PHYSICS
+=======================================
+Memory Region    │ Barcode │ Planck │ Chirality
+─────────────────┼─────────┼────────┼──────────
+IRAM             │ Aztec   │ c      │ CCW (fixed)
+DRAM            │ Code16K │ G      │ CW (fixed)
+RTC FAST        │ MaxiCode│ ħ      │ RECONCILED
+PSRAM           │ BeeTag  │ kB     │ FRAME
+
+The block stream [B]→[C] (DRAM→RTC_FAST) is the critical
+reconciliation point where I/D chirality is resolved.
+Stream rate determines the gauge coupling strength.

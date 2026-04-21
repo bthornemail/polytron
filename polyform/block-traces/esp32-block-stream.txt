@@ -1,0 +1,17 @@
+ESP32 Block Stream Events (Harvard Architecture)
+================================================
+[A] Base Image      → IRAM (Instruction fetch, Aztec/c)
+[B] Overlay 1       → DRAM (Data access, Code16K/G)
+[C] Overlay 2       → RTC FAST (Always-on, MaxiCode/ħ)
+[D] Active Layer   → PSRAM (External SPI, Omicron frame)
+
+Harvard I/D Split:
+  Instruction fetch: Left-handed (CCW) chirality
+  Data access:       Right-handed (CW) chirality
+  Block stream [B]→[C]: Reconciles I/D chirality conflict
+
+Stream Events:
+Time,Backing,Active,Memory_Region,Action,Chirality
+0,A,B,IRAM→DRAM,identity,I-CCW
+1,B,C,DRAM→RTC_FAST,q∘p,RECONCILED
+2,C,D,RTC_FAST→PSRAM,r∘q,I-CCW+D-CW

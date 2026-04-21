@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 185 295">
+  <title>Temporal Polyform - QEMU Execution Trace</title>
+  <style>
+    .fs { fill: #e74c3c; }   /* FS/XOR - Truth */
+    .gs { fill: #3498db; }   /* GS/AND - Generate */
+    .rs { fill: #2ecc71; }   /* RS/OR - Propagate */
+    .us { fill: #f39c12; }   /* US/Lookahead */
+    .block { stroke: #333; stroke-width: 0.5; }
+    .axis { stroke: #999; stroke-width: 1; stroke-dasharray: 4; }
+  </style>
+  <rect width="185" height="295" fill="#fafafa"/>
+  <text x="10" y="25" font-family="monospace" font-size="10">Time (icount)</text>
+  <line x1="40" y1="30" x2="130" y2="30" class="axis"/>
+  <line x1="40" y1="30" x2="40" y2="240" class="axis"/>
+  <rect x="80" y="40" width="9" height="9" class="fs block"/>
+  <circle cx="85" cy="45" r="2" class="us"/>
+  <rect x="70" y="40" width="9" height="9" class="fs block"/>
+  <circle cx="75" cy="45" r="2" class="us"/>
+  <rect x="65" y="45" width="9" height="9" class="fs block"/>
+  <circle cx="70" cy="50" r="2" class="us"/>
+  <rect x="55" y="45" width="9" height="9" class="fs block"/>
+  <rect x="57" y="47" width="5" height="5" class="gs block"/>
+  <circle cx="60" cy="50" r="2" class="us"/>
+  <g transform="translate(30, 260)">
+    <rect width="12" height="12" class="fs"/>
+    <text x="16" y="10" font-size="10">FS/XOR</text>
+    <rect y="15" width="12" height="12" class="gs"/>
+    <text x="16" y="25" font-size="10">GS/AND</text>
+    <rect y="30" width="12" height="12" class="rs"/>
+    <text x="16" y="40" font-size="10">RS/OR</text>
+    <circle cy="48" r="6" class="us"/>
+    <text x="16" y="52" font-size="10">US/Look</text>
+  </g>
+</svg>

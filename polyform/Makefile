@@ -3,7 +3,7 @@
 CC      ?= gcc
 CFLAGS  := -lm -Wall -O2
 
-TARGETS := karnaugh-gen barcode-render
+TARGETS := karnaugh-gen barcode-render barcode-accurate qemu-profiler
 
 .PHONY: all clean test benchmark install
 

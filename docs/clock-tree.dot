@@ -1,0 +1,45 @@
+digraph tetra_clock_tree {
+  rankdir=TB;
+  graph [splines=ortho, nodesep=0.8, ranksep=1.2];
+  node [shape=box, style=rounded, fontname=Helvetica, fontsize=12];
+  edge [color="#1D1D1D", penwidth=2];
+
+  subgraph cluster_const {
+    label="CONSTITUTION";
+    bgcolor="#f5f5f5";
+    style=dashed;
+    FS [label="FS\n(File Separator)\nbase clock", fillcolor="#E0E0E0", penwidth=2];
+    GS [label="GS\n(Group Separator)\nCONSTITUTIONAL", fillcolor="#1D1D1D", fontcolor=white, penwidth=2];
+    RS [label="RS\n(Record Separator)\nreference", fillcolor="#404040", fontcolor=white, penwidth=2];
+    US [label="US\n(Unit Separator)\nactive", fillcolor="#000000", fontcolor=white, penwidth=2];
+  }
+
+  subgraph cluster_gnomon {
+    label="GNOMON Growth (period=8)";
+    bgcolor="#FFF8E0";
+    style=dashed;
+    g0 [label="step 0\nstate=0x4242\nSID=0x061B", fillcolor="#FFFFF0", penwidth=1];
+    g1 [label="step 1\nstate=0x061B\nSID=0xFD75", fillcolor="#FFFFF0", penwidth=1];
+    g2 [label="step 2\nstate=0xFD75\nSID=0x6E04", fillcolor="#FFFFF0", penwidth=1];
+    g3 [label="step 3\nstate=0x6E04\nSID=0xB7B7", fillcolor="#FFFFF0", penwidth=1];
+    g4 [label="step 4\nstate=0xB7B7\nSID=0x3F22", fillcolor="#FFFFF0", penwidth=1];
+    g5 [label="step 5\nstate=0x3F22\nSID=0x0880", fillcolor="#FFFFF0", penwidth=1];
+    g6 [label="step 6\nstate=0x0880\nSID=0x573D", fillcolor="#FFFFF0", penwidth=1];
+    g7 [label="step 7\nstate=0x573D\nSID=0x4242", fillcolor="#FFFFF0", penwidth=1];
+    g0 -> g1 [style=dashed, color="#808080", penwidth=1];
+    g1 -> g2 [style=dashed, color="#808080", penwidth=1];
+    g2 -> g3 [style=dashed, color="#808080", penwidth=1];
+    g3 -> g4 [style=dashed, color="#808080", penwidth=1];
+    g4 -> g5 [style=dashed, color="#808080", penwidth=1];
+    g5 -> g6 [style=dashed, color="#808080", penwidth=1];
+    g6 -> g7 [style=dashed, color="#808080", penwidth=1];
+  }
+
+  FS -> GS [label="K(p,0x1D)", color="#1D1D1D", penwidth=3];
+  GS -> RS [label="channel", color="#404040"];
+  RS -> US [label="propagate", color="#606060"];
+
+  kernel [label="K(p,C)\n= rotl(p,1) ^ rotl(p,3)\n^ rotr(p,2) ^ C", shape=ellipse, fillcolor="#E8E8E8", style=bold, fontsize=14];
+  kernel -> FS [style=invis];
+
+}

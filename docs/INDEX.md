@@ -22,6 +22,8 @@ The Tetragrammatron is a constitutional computing framework where the 16-bit wor
 | [HOLEMAP.md](HOLEMAP.md) | Lattice visualization |
 | [GPU.md](GPU.md) | Full GPU + IVSHMEM pipeline |
 | [TCG.md](TCG.md) | TCG integration + cardinality/chirality |
+| [CLOCK.md](CLOCK.md) | Clock tree visualization (Graphviz) |
+| [GNOMON.md](GNOMON.md) | GNOMON 8-step cycle animation |
 
 ## Architecture
 

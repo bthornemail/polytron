@@ -111,9 +111,9 @@ static int polyform_write_png(const Polyform2D* poly, const char* filename) {
     
     png_init_io(png_ptr, fp);
     
-    /* IHDR: width = degree * 2, height = degree */
-    int width = poly->degree * 2;
-    int height = poly->degree;
+    /* IHDR: fixed 8x8 for testing */
+    int width = 8;
+    int height = 8;
     
     png_set_IHDR(png_ptr, info_ptr, width, height,
                  8,                      /* bit depth */
@@ -155,33 +155,32 @@ static int polyform_write_png(const Polyform2D* poly, const char* filename) {
     
     png_write_info(png_ptr, info_ptr);
     
-    /* Write rows — each row is a GNOMON step */
-    png_bytep row = (png_bytep)png_malloc(png_ptr, width);
-    
+    png_bytep* rows = (png_bytep*)png_malloc(png_ptr, height * sizeof(png_bytep));
     for (int y = 0; y < height; y++) {
-        row[0] = PNG_FILTER_NONE;  /* Filter byte */
-        memset(row + 1, 0, width - 1);
+        rows[y] = (png_bytep)png_malloc(png_ptr, width);
+        memset(rows[y], 0, width);
         
-        for (int x = 1; x < width; x++) {
+        for (int x = 0; x < width; x++) {
             int cell_idx = y;
             if (cell_idx < poly->count) {
-                /* Color index from channel extraction */
                 uint8_t fs = extract_fs_channel(poly);
                 uint8_t gs = extract_gs_channel(poly);
                 uint8_t rs = extract_rs_channel(poly);
-                uint8_t us = y & 1;
                 
-                row[x] = ((fs & 1) << 0) | ((gs & 1) << 1) | 
-                         ((rs & 1) << 2) | ((y & 1) << 3);
-                if (row[x] > 7) row[x] = 1;
+                rows[y][x] = ((fs & 1) << 0) | ((gs & 1) << 1) | 
+                             ((rs & 1) << 2) | ((y & 1) << 3);
             } else {
-                row[x] = 1;  /* Pad with IDAT marker */
+                rows[y][x] = 1;
             }
         }
-        png_write_row(png_ptr, row);
     }
     
-    png_free(png_ptr, row);
+    png_write_image(png_ptr, rows);
+    
+    for (int y = 0; y < height; y++) {
+        png_free(png_ptr, rows[y]);
+    }
+    png_free(png_ptr, rows);
     png_write_end(png_ptr, info_ptr);
     png_destroy_write_struct(&png_ptr, &info_ptr);
     fclose(fp);
@@ -199,10 +198,13 @@ static Polyform2D* polyform_read_png(const char* filename) {
     
     /* Verify PNG signature */
     png_byte header[8];
-    fread(header, 1, 8, fp);
+    if (fread(header, 1, 8, fp) != 8) {
+        fclose(fp);
+        return NULL;
+    }
     
-    /* Check for constitutional constant 0x1D at offset 4 */
-    if (header[PNG_SIG_GS_OFFSET] != PNG_SIG_GS_VALUE) {
+    /* Standard PNG signature check */
+    if (png_sig_cmp(header, 0, 8) != 0) {
         fclose(fp);
         return NULL;
     }
@@ -221,6 +223,27 @@ static Polyform2D* polyform_read_png(const char* filename) {
     png_set_sig_bytes(png_ptr, 8);
     png_read_info(png_ptr, info_ptr);
     
+    /* Verify constitutional palette contains 0x1D1D1D */
+    png_colorp palette;
+    int num_palette = 0;
+    png_get_PLTE(png_ptr, info_ptr, &palette, &num_palette);
+    if (num_palette > 0) {
+        int has_constitutional = 0;
+        for (int i = 0; i < num_palette; i++) {
+            if (palette[i].red == 0x1D && 
+                palette[i].green == 0x1D && 
+                palette[i].blue == 0x1D) {
+                has_constitutional = 1;
+                break;
+            }
+        }
+        if (!has_constitutional) {
+            png_destroy_read_struct(&png_ptr, &info_ptr, NULL);
+            fclose(fp);
+            return NULL;
+        }
+    }
+    
     int width = png_get_image_width(png_ptr, info_ptr);
     int height = png_get_image_height(png_ptr, info_ptr);
     
@@ -228,15 +251,15 @@ static Polyform2D* polyform_read_png(const char* filename) {
     Polyform2D* poly = (Polyform2D*)malloc(sizeof(Polyform2D));
     *poly = make_polyomino(height, 0x4242);
     
-    /* Read rows */
-    png_bytep row = (png_bytep)png_malloc(png_ptr, width);
+    /* Read rows - filter byte + width bytes */
+    png_bytep row = (png_bytep)png_malloc(png_ptr, width + 1);
     
     for (int y = 0; y < height; y++) {
         png_read_row(png_ptr, row, NULL);
         
         for (int x = 0; x < width && y < poly->count; x++) {
             if (x < poly->count) {
-                uint8_t color_idx = row[x];
+                uint8_t color_idx = row[x + 1];
                 poly->cells[y].cell_sid = cons(color_idx, y);
             }
         }

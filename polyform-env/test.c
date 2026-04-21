@@ -75,9 +75,19 @@ int main(void) {
     Polycube3D dali = make_dali_cross();
     printf("   degree=%d, voxels=%d\n", dali.degree, dali.count);
     if (dali_cross_write_png(&dali, "dali") == 0) {
-        printf("   Wrote dali_z1.png through dali_z4.png\n");
+        printf("   Wrote dali_z0.png through dali_z3.png\n");
     }
     free_polycube3d(&dali);
+    
+    /* PNG read test */
+    printf("10. PNG Read Verification:\n");
+    Polyform2D* loaded = polyform_read_png("pentomino.png");
+    if (loaded) {
+        printf("   Loaded SID=0x%04X, count=%d\n", loaded->polyform_sid, loaded->count);
+        free_polyform2d(loaded);
+    } else {
+        printf("   Failed to load PNG\n");
+    }
     
     /* Cleanup */
     free_polyform2d(&penta);

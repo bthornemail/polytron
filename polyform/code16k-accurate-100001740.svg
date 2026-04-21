@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 212">
+  <title>Code 16K (4-channel)</title>
+  <rect width="100" height="212" fill="white"/>
+  <rect x="20" y="10" width="11" height="11" fill="#e74c3c"/>
+  <rect x="20" y="13" width="11" height="6" fill="#3498db"/>
+  <rect x="20" y="22" width="11" height="11" fill="#e74c3c"/>
+</svg>

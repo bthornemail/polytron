@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264">
+  <title>MaxiCode (mode=3)</title>
+  <rect width="264" height="264" fill="white"/>
+  <rect x="128" y="96" width="8" height="8" fill="black"/>
+  <rect x="120" y="104" width="8" height="8" fill="black"/>
+  <rect x="136" y="104" width="8" height="8" fill="black"/>
+  <rect x="112" y="112" width="8" height="8" fill="black"/>
+  <rect x="128" y="112" width="8" height="8" fill="black"/>
+  <rect x="144" y="112" width="8" height="8" fill="black"/>
+  <rect x="104" y="120" width="8" height="8" fill="black"/>
+  <rect x="120" y="120" width="8" height="8" fill="black"/>
+  <rect x="136" y="120" width="8" height="8" fill="black"/>
+  <rect x="152" y="120" width="8" height="8" fill="black"/>
+  <rect x="96" y="128" width="8" height="8" fill="black"/>
+  <rect x="112" y="128" width="8" height="8" fill="black"/>
+  <rect x="128" y="128" width="8" height="8" fill="black"/>
+  <rect x="144" y="128" width="8" height="8" fill="black"/>
+  <rect x="160" y="128" width="8" height="8" fill="black"/>
+  <rect x="104" y="136" width="8" height="8" fill="black"/>
+  <rect x="120" y="136" width="8" height="8" fill="black"/>
+  <rect x="136" y="136" width="8" height="8" fill="black"/>
+  <rect x="152" y="136" width="8" height="8" fill="black"/>
+  <rect x="112" y="144" width="8" height="8" fill="black"/>
+  <rect x="128" y="144" width="8" height="8" fill="black"/>
+  <rect x="144" y="144" width="8" height="8" fill="black"/>
+  <rect x="120" y="152" width="8" height="8" fill="black"/>
+  <rect x="136" y="152" width="8" height="8" fill="black"/>
+  <rect x="128" y="160" width="8" height="8" fill="black"/>
+</svg>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hopf Fibration Chirality Test</title>
+    <style>
+        body { margin: 0; background: #000; color: #0f0; font-family: monospace; }
+        #canvas { display: block; width: 100vw; height: 100vh; }
+        #info { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.8); padding: 10px; }
+        #status { color: #ff0; }
+        .label { color: #888; }
+        .value { color: #0ff; }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="info">
+        <div id="status">Initializing...</div>
+        <br>
+        <span class="label">Platform:</span> <span class="value" id="platform">-</span><br>
+        <span class="label">Endianness:</span> <span class="value" id="endian">-</span><br>
+        <span class="label">BOM:</span> <span class="value" id="bom">-</span><br>
+        <span class="label">Chirality:</span> <span class="value" id="chirality">-</span><br>
+        <span class="label">Gauge Phase:</span> <span class="value" id="phase">-</span><br>
+        <span class="label">Vertex Order:</span> <span class="value" id="winding">-</span><br>
+        <br>
+        <span class="label">Action:</span> <span class="value" id="action">Identity</span>
+    </div>
+
+    <script>
+    // ═══════════════════════════════════════════════════════════════════════════
+    // ENDIANNESS & CHIRALITY DETECTION
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    const ENDIANNESS = (function() {
+        const buf = new ArrayBuffer(2);
+        const view = new DataView(buf);
+        view.setUint16(0, 0x0102, false);  // Big endian
+        const big = view.getUint8(0) === 0x01;
+        return big ? 'Big Endian' : 'Little Endian';
+    })();
+    
+    const BOM = ENDIANNESS === 'Big Endian' ? 0xFEFF : 0xFFFE;
+    const CHIRALITY = ENDIANNESS === 'Big Endian' ? 'Right-handed (CW)' : 'Left-handed (CCW)';
+    const WINDING = ENDIANNESS === 'Big Endian' ? 'CW' : 'CCW';
+    
+    document.getElementById('platform').textContent = navigator.platform;
+    document.getElementById('endian').textContent = ENDIANNESS;
+    document.getElementById('bom').textContent = '0x' + BOM.toString(16).toUpperCase();
+    document.getElementById('chirality').textContent = CHIRALITY;
+    document.getElementById('winding').textContent = WINDING;
+    document.getElementById('status').textContent = 'Running';
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // WEBGL SETUP
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    const canvas = document.getElementById('canvas');
+    const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+    
+    if (!gl) {
+        document.getElementById('status').textContent = 'WebGL not supported!';
+        throw new Error('WebGL not supported');
+    }
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.enable(gl.DEPTH_TEST);
+    gl.enable(gl.CULL_FACE);
+    gl.cullFace(gl.BACK);
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // SHADERS - Hopf Fibration with Gauge Actions
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    const vsSource = `#version 300 es
+    precision highp float;
+    
+    in vec3 a_position;
+    in vec3 a_color;
+    
+    uniform mat4 u_projection;
+    uniform mat4 u_view;
+    uniform mat4 u_model;
+    uniform int u_gauge_action;  // 0=I, 1=p, 2=q, 3=r
+    uniform float u_phi;          // Golden ratio
+    uniform int u_chirality;     // +1=CW, -1=CCW
+    
+    out vec3 v_color;
+    out float v_depth;
+    
+    // Gauge action transformations
+    vec3 apply_identity(vec3 v) { return v; }
+    
+    // p: Binary rotation (permute axes)
+    vec3 apply_p(vec3 v) { return v.yzx; }
+    
+    // q: Decimal rotation (different permutation)
+    vec3 apply_q(vec3 v) { return v.zxy; }
+    
+    // r: Hex scaling by golden ratio
+    vec3 apply_r(vec3 v) { return v * u_phi; }
+    
+    void main() {
+        vec3 transformed = a_position;
+        
+        // Apply gauge action
+        if (u_gauge_action == 1) transformed = apply_p(transformed);
+        else if (u_gauge_action == 2) transformed = apply_q(transformed);
+        else if (u_gauge_action == 3) transformed = apply_r(transformed);
+        
+        // Apply chirality (flip if CCW)
+        if (u_chirality < 0) transformed.x = -transformed.x;
+        
+        gl_Position = u_projection * u_view * u_model * vec4(transformed, 1.0);
+        v_color = a_color;
+        v_depth = gl_Position.z / gl_Position.w;
+    }
+    `;
+    
+    const fsSource = `#version 300 es
+    precision highp float;
+    
+    in vec3 v_color;
+    in float v_depth;
+    
+    out vec4 fragColor;
+    
+    void main() {
+        // Depth-based coloring to show 3D structure
+        float depth = 0.5 + 0.5 * v_depth;
+        vec3 color = v_color * depth;
+        
+        // Add glow effect
+        color += vec3(0.1, 0.2, 0.3) * (1.0 - depth);
+        
+        fragColor = vec4(color, 1.0);
+    }
+    `;
+    
+    // Fallback for WebGL 1
+    const vsSourceWebGL1 = `
+    precision highp float;
+    
+    attribute vec3 a_position;
+    attribute vec3 a_color;
+    
+    uniform mat4 u_projection;
+    uniform mat4 u_view;
+    uniform mat4 u_model;
+    uniform int u_gauge_action;
+    uniform float u_phi;
+    uniform int u_chirality;
+    
+    varying vec3 v_color;
+    varying float v_depth;
+    
+    vec3 apply_p(vec3 v) { return v.yzx; }
+    vec3 apply_q(vec3 v) { return v.zxy; }
+    vec3 apply_r(vec3 v) { return v * u_phi; }
+    
+    void main() {
+        vec3 transformed = a_position;
+        if (u_gauge_action == 1) transformed = apply_p(transformed);
+        else if (u_gauge_action == 2) transformed = apply_q(transformed);
+        else if (u_gauge_action == 3) transformed = apply_r(transformed);
+        if (u_chirality < 0) transformed.x = -transformed.x;
+        gl_Position = u_projection * u_view * u_model * vec4(transformed, 1.0);
+        v_color = a_color;
+        v_depth = gl_Position.z / gl_Position.w;
+    }
+    `;
+    
+    const fsSourceWebGL1 = `
+    precision highp float;
+    varying vec3 v_color;
+    varying float v_depth;
+    
+    void main() {
+        float depth = 0.5 + 0.5 * v_depth;
+        vec3 color = v_color * depth;
+        color += vec3(0.1, 0.2, 0.3) * (1.0 - depth);
+        gl_FragColor = vec4(color, 1.0);
+    }
+    `;
+    
+    // Compile shader
+    function createShader(gl, type, source) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            console.error(gl.getShaderInfoLog(shader));
+            gl.deleteShader(shader);
+            return null;
+        }
+        return shader;
+    }
+    
+    function createProgram(gl, vsSource, fsSource) {
+        const vs = createShader(gl, gl.VERTEX_SHADER, vsSource);
+        const fs = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+        const program = gl.createProgram();
+        gl.attachShader(program, vs);
+        gl.attachShader(program, fs);
+        gl.linkProgram(program);
+        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+            console.error(gl.getProgramInfoLog(program));
+            return null;
+        }
+        return program;
+    }
+    
+    const isWebGL2 = gl instanceof WebGL2RenderingContext;
+    const program = createProgram(gl, isWebGL2 ? vsSource : vsSourceWebGL1, isWebGL2 ? fsSource : fsSourceWebGL1);
+    gl.useProgram(program);
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // 16-CELL ORTHOPLEX (TESSERACT HYPERCUBE VERTICES)
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    // 16-cell vertices: all permutations of (±1, 0, 0, 0)
+    // We project 4D → 3D
+    const vertices16 = [];
+    const colors16 = [];
+    
+    for (let i = 0; i < 4; i++) {
+        for (let sign = -1; sign <= 1; sign += 2) {
+            const v = [0, 0, 0, 0];
+            v[i] = sign;
+            
+            // Project 4D → 3D (simple orthographic)
+            const v3 = [v[0], v[1], v[2]];
+            vertices16.push(...v3);
+            
+            // Color based on which axis and sign
+            const r = (i === 0) ? Math.abs(sign) : 0.3;
+            const g = (i === 1) ? Math.abs(sign) : 0.3;
+            const b = (i === 2) ? Math.abs(sign) : 0.3;
+            colors16.push(r + 0.2, g + 0.2, b + 0.2);
+        }
+    }
+    
+    // 16-cell edges (connecting vertices that differ by exactly 2 units)
+    const edges16 = [];
+    for (let i = 0; i < 16; i++) {
+        for (let j = i + 1; j < 16; j++) {
+            let diff = 0;
+            for (let k = 0; k < 4; k++) {
+                diff += Math.abs(vertices16[i*3+k] - vertices16[j*3+k]);
+            }
+            if (Math.abs(diff - 2) < 0.1) {
+                edges16.push(i, j);
+            }
+        }
+    }
+    
+    // Create buffers
+    const posBuffer = gl.createBuffer();
+    const colorBuffer = gl.createBuffer();
+    const indexBuffer = gl.createBuffer();
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // MATRIX UTILITIES
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    function perspective(fov, aspect, near, far) {
+        const f = 1.0 / Math.tan(fov / 2);
+        return [
+            f / aspect, 0, 0, 0,
+            0, f, 0, 0,
+            0, 0, (far + near) / (near - far), -1,
+            0, 0, (2 * far * near) / (near - far), 0
+        ];
+    }
+    
+    function lookAt(eye, center, up) {
+        const z = normalize(subtract(eye, center));
+        const x = normalize(cross(up, z));
+        const y = cross(z, x);
+        return [
+            x[0], y[0], z[0], 0,
+            x[1], y[1], z[1], 0,
+            x[2], y[2], z[2], 0,
+            -dot(x, eye), -dot(y, eye), -dot(z, eye), 1
+        ];
+    }
+    
+    function identity() {
+        return [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1];
+    }
+    
+    function rotateY(angle) {
+        const c = Math.cos(angle), s = Math.sin(angle);
+        return [c,0,s,0, 0,1,0,0, -s,0,c,0, 0,0,0,1];
+    }
+    
+    function rotateX(angle) {
+        const c = Math.cos(angle), s = Math.sin(angle);
+        return [1,0,0,0, 0,c,-s,0, 0,s,c,0, 0,0,0,1];
+    }
+    
+    function subtract(a, b) { return [a[0]-b[0], a[1]-b[1], a[2]-b[2]]; }
+    function cross(a, b) { return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]; }
+    function dot(a, b) { return a[0]*b[0] + a[1]*b[1] + a[2]*b[2]; }
+    function normalize(v) { const l = Math.sqrt(dot(v,v)); return [v[0]/l, v[1]/l, v[2]/l]; }
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // RENDER LOOP
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    let gaugeAction = 0;
+    let gaugePhase = 0;
+    const PHI = (1 + Math.sqrt(5)) / 2;
+    const CHIRALITY_SIGN = ENDIANNESS === 'Big Endian' ? 1 : -1;
+    
+    const aPosition = gl.getAttribLocation(program, 'a_position');
+    const aColor = gl.getAttribLocation(program, 'a_color');
+    const uProjection = gl.getUniformLocation(program, 'u_projection');
+    const uView = gl.getUniformLocation(program, 'u_view');
+    const uModel = gl.getUniformLocation(program, 'u_model');
+    const uGaugeAction = gl.getUniformLocation(program, 'u_gauge_action');
+    const uPhi = gl.getUniformLocation(program, 'u_phi');
+    const uChirality = gl.getUniformLocation(program, 'u_chirality');
+    
+    let time = 0;
+    
+    function render() {
+        time += 0.01;
+        
+        gl.clearColor(0, 0, 0, 1);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        
+        const aspect = canvas.width / canvas.height;
+        const projection = perspective(Math.PI / 4, aspect, 0.1, 100);
+        const view = lookAt([3, 2, 5], [0, 0, 0], [0, 1, 0]);
+        let model = identity();
+        model = multiply(model, rotateY(time * 0.5));
+        model = multiply(model, rotateX(time * 0.3));
+        
+        gl.uniformMatrix4fv(uProjection, false, projection);
+        gl.uniformMatrix4fv(uView, false, view);
+        gl.uniformMatrix4fv(uModel, false, model);
+        gl.uniform1i(uGaugeAction, gaugeAction);
+        gl.uniform1f(uPhi, PHI);
+        gl.uniform1i(uChirality, CHIRALITY_SIGN);
+        
+        // Draw edges
+        gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices16), gl.STATIC_DRAW);
+        gl.enableVertexAttribArray(aPosition);
+        gl.vertexAttribPointer(aPosition, 3, gl.FLOAT, false, 0, 0);
+        
+        gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors16), gl.STATIC_DRAW);
+        gl.enableVertexAttribArray(aColor);
+        gl.vertexAttribPointer(aColor, 3, gl.FLOAT, false, 0, 0);
+        
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+        
+        // Draw vertices as points
+        const vertexIndices = [];
+        for (let i = 0; i < 16; i++) vertexIndices.push(i);
+        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(vertexIndices), gl.STATIC_DRAW);
+        
+        gl.drawElements(gl.POINTS, 16, gl.UNSIGNED_SHORT, 0);
+        
+        // Draw edges
+        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(edges16), gl.STATIC_DRAW);
+        gl.drawElements(gl.LINES, edges16.length, gl.UNSIGNED_SHORT, 0);
+        
+        requestAnimationFrame(render);
+    }
+    
+    function multiply(a, b) {
+        const r = [];
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                let sum = 0;
+                for (let k = 0; k < 4; k++) sum += a[i*4+k] * b[k*4+j];
+                r.push(sum);
+            }
+        }
+        return r;
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // KEYBOARD CONTROLS - Change gauge action
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    const actions = ['Identity (I)', 'p (binary)', 'q (decimal)', 'r (hex)'];
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'ArrowRight') {
+            gaugeAction = (gaugeAction + 1) % 4;
+            gaugePhase = (gaugePhase + 1) % 6;
+            document.getElementById('action').textContent = actions[gaugeAction];
+            document.getElementById('phase').textContent = gaugePhase;
+        }
+        if (e.key === 'ArrowLeft') {
+            gaugeAction = (gaugeAction + 3) % 4;
+            gaugePhase = (gaugePhase + 5) % 6;
+            document.getElementById('action').textContent = actions[gaugeAction];
+            document.getElementById('phase').textContent = gaugePhase;
+        }
+    });
+    
+    document.getElementById('phase').textContent = gaugePhase;
+    
+    // Start
+    render();
+    </script>
+</body>
+</html>

@@ -41,6 +41,13 @@ struct TetraCtrlState {
     Clock *clk_gs;
     Clock *clk_rs;
     Clock *clk_us;
+    
+    /* Chirality properties for gauge theory */
+    uint32_t bom;           /* Byte Order Mark: 0xFEFF (BE) or 0xFFFE (LE) */
+    int32_t chirality;      /* +1 = right-handed (CW), -1 = left-handed (CCW) */
+    uint8_t gauge_phase;    /* 0-5 for MaxiCode hex phase */
+    uint8_t parity;         /* Even/odd permutation */
+    uint8_t s_bit;          /* Control/Data mode */
 };
 
 #define TETRA_FEATURE_POWER_CTRL   (1 << 0)
@@ -177,6 +184,12 @@ static void tetra_ctrl_realize(DeviceState *dev, Error **errp)
     s->fb_offset = 0;
     s->fb_size = 0;
     s->fb_ptr = NULL;
+
+    s->bom = 0xFEFF;
+    s->chirality = 1;
+    s->gauge_phase = 0;
+    s->parity = 0;
+    s->s_bit = 0;
 }
 
 static void tetra_ctrl_class_init(ObjectClass *klass, const void *data)

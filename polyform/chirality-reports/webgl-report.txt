@@ -1,0 +1,24 @@
+WebGL Chirality Test (hopf-fibration.html)
+=========================================
+
+Platform: JavaScript detection via DataView endianness
+BOM: Derived from platform endianness
+Chirality: BOM = 0xFEFF → Right-handed (CW)
+           BOM = 0xFFFE → Left-handed (CCW)
+
+Vertex Winding: CCW (OpenGL convention)
+Face Culling: BACK (standard)
+
+16-Cell Orthoplex:
+- 16 vertices (all permutations of ±1,0,0,0)
+- 32 edges
+- Projected 4D → 3D
+
+Gauge Actions in Shader:
+- I (identity): No change
+- p (binary): Rotate axes (v.yzx)
+- q (decimal): Rotate axes (v.zxy)
+- r (hex): Scale by φ (golden ratio)
+
+Chirality Flip in Shader:
+if (chirality < 0) v.x = -v.x;

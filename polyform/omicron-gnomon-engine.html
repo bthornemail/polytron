@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Omicron-Gnomon Open World Engine</title>
+    <style>
+        body { margin: 0; background: #000; color: #0f0; font-family: monospace; overflow: hidden; }
+        #canvas { display: block; width: 100vw; height: 100vh; }
+        #info { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.85); padding: 15px; border: 1px solid #0f0; max-width: 400px; }
+        #status { color: #ff0; font-weight: bold; }
+        .label { color: #888; }
+        .value { color: #0ff; }
+        #stream-display { margin-top: 10px; padding: 10px; background: #111; border: 1px solid #333; font-size: 12px; max-height: 150px; overflow-y: auto; }
+        #controls { position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.85); padding: 10px; border: 1px solid #0f0; }
+        #wordnet-search { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.85); padding: 15px; border: 1px solid #ff0; }
+        #word-input { width: 150px; padding: 5px; background: #222; color: #0f0; border: 1px solid #0f0; }
+        #wordnet-results { margin-top: 10px; font-size: 12px; max-height: 300px; overflow-y: auto; }
+        .stream-path { color: #0ff; margin: 5px 0; }
+        .synset-info { color: #888; font-size: 11px; }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="info">
+        <div id="status">Initializing Omicron-Gnomon Engine...</div>
+        <br>
+        <span class="label">Axiom:</span> <span class="value" id="axiom">NULL != 10</span><br>
+        <span class="label">Delta Law:</span> <span class="value" id="delta">rotl⊕rotl⊕rotr⊕C</span><br>
+        <span class="label">Period:</span> <span class="value" id="period">8</span><br>
+        <span class="label">Prime:</span> <span class="value" id="prime">73</span><br>
+        <span class="label">Chirality:</span> <span class="value" id="chirality">-</span><br>
+        <span class="label">State:</span> <span class="value" id="state">-</span><br>
+        <br>
+        <span class="label">Stream:</span>
+        <div id="stream-display">Waiting for stream...</div>
+    </div>
+    <div id="controls">
+        <button onclick="toggleRun()">Play/Pause</button>
+        <button onclick="resetStream()">Reset</button>
+        <button onclick="step()">Step</button>
+        <span id="fps">FPS: 0</span>
+    </div>
+    <div id="wordnet-search">
+        <input type="text" id="word-input" placeholder="Enter word (e.g., dog)" 
+               onkeypress="if(event.key==='Enter')lookupWord()">
+        <button onclick="lookupWord()">Lookup</button>
+        <div id="wordnet-results"></div>
+    </div>
+
+    <script>
+    // ═══════════════════════════════════════════════════════════════════════════
+    // THE AXIOM: NULL != 10
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    const AXIOM = "NULL != 10";
+    const DELTA_LAW = "rotl(x,1) XOR rotl(x,3) XOR rotr(x,2) XOR C";
+    const PERIOD = 8;
+    const PRIME = 73;
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // THE GEOMETRY MAP: Aegean symbols → 3D geometries
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    const GEOMETRY_MAP = {
+        // Point (0D)
+        0x10100: { name: 'point', vertices: [[0,0,0]], edges: [], faces: [], color: [1,0,0] },
+        
+        // Line (1D)
+        0x10101: { name: 'line', vertices: [[-1,0,0],[1,0,0]], edges: [[0,1]], faces: [], color: [0,1,0] },
+        
+        // Triangle (2D)
+        0x10102: { name: 'triangle', vertices: [[0,1,0],[-1,-1,0],[1,-1,0]], edges: [[0,1],[1,2],[2,0]], faces: [[0,1,2]], color: [0,0,1] },
+        
+        // Tetrahedron (3D) - 𐄇
+        0x10107: { name: 'tetrahedron', 
+            vertices: [[1,1,1],[-1,-1,1],[-1,1,-1],[1,-1,-1]],
+            edges: [[0,1],[0,2],[0,3],[1,2],[1,3],[2,3]],
+            faces: [[0,1,2],[0,1,3],[0,2,3],[1,2,3]],
+            color: [1,0.5,0] },
+        
+        // 5-cell (4D projected to 3D) - 𐄈
+        0x10108: { name: '5-cell',
+            vertices: [[1,0,0,0],[-1/4,sqrt(15)/4,0,0],[-1/4,-sqrt(5)/4,sqrt(10)/4,0],[-1/4,-sqrt(5)/4,-sqrt(10)/4/2,sqrt(6)/4]],
+            edges: [[0,1],[0,2],[0,3],[0,4],[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]],
+            color: [0,1,0.5] },
+        
+        // 8-cell/Tesseract (4D) - 𐄉
+        0x10109: { name: '8-cell',
+            vertices: generateHypercubeVertices(4),
+            edges: generateHypercubeEdges(4),
+            color: [0,0.5,1] },
+        
+        // 16-cell/Orthoplex (4D) - 𐄊
+        0x1010A: { name: '16-cell',
+            vertices: [[1,0,0,0],[-1,0,0,0],[0,1,0,0],[0,-1,0,0],[0,0,1,0],[0,0,-1,0],[0,0,0,1],[0,0,0,-1]],
+            edges: [[0,2],[0,3],[0,4],[0,5],[0,6],[0,7],[1,2],[1,3],[1,4],[1,5],[1,6],[1,7],[2,4],[2,5],[2,6],[2,7],[3,4],[3,5],[3,6],[3,7],[4,6],[4,7],[5,6],[5,7]],
+            faces: [],
+            color: [1,0,1] },
+        
+        // 24-cell (4D) - 𐄋
+        0x1010B: { name: '24-cell',
+            vertices: generate24CellVertices(),
+            edges: generate24CellEdges(),
+            color: [1,1,0] },
+        
+        // 120-cell (4D) - 𐄌
+        0x1010C: { name: '120-cell',
+            vertices: [], // Too many to generate inline
+            edges: [],
+            color: [0,1,1] },
+        
+        // 600-cell (4D) - 𐄍
+        0x1010D: { name: '600-cell',
+            vertices: [],
+            edges: [],
+            color: [1,0.5,0.5] },
+        
+        // Hopf fiber S³ - 𐄎
+        0x1010E: { name: 'hopf-fiber',
+            vertices: generateHopfFiber(32),
+            edges: generateHopfEdges(32),
+            color: [0.5,0,1] },
+        
+        // S⁷ - 𐄏
+        0x1010F: { name: 's7',
+            vertices: generateSphereVertices(7, 24),
+            edges: [],
+            color: [0,1,1] },
+        
+        // S¹⁵ - 𐄐
+        0x10110: { name: 's15',
+            vertices: generateSphereVertices(15, 8),
+            edges: [],
+            color: [1,0,1] }
+    };
+    
+    function generateHypercubeVertices(dims) {
+        const verts = [];
+        const count = Math.pow(2, dims);
+        for (let i = 0; i < count; i++) {
+            const v = [];
+            for (let d = 0; d < dims; d++) {
+                v.push(((i >> d) & 1) ? 1 : -1);
+            }
+            verts.push(v);
+        }
+        return verts;
+    }
+    
+    function generateHypercubeEdges(dims) {
+        const edges = [];
+        const count = Math.pow(2, dims);
+        for (let i = 0; i < count; i++) {
+            for (let d = 0; d < dims; d++) {
+                const neighbor = i ^ (1 << d);
+                if (neighbor > i) {
+                    edges.push([i, neighbor]);
+                }
+            }
+        }
+        return edges;
+    }
+    
+    function generate24CellVertices() {
+        const verts = [];
+        // Permutations of (±1, ±1, 0, 0)
+        for (let i = 0; i < 4; i++) {
+            for (let s1 = -1; s1 <= 1; s1 += 2) {
+                for (let s2 = -1; s2 <= 1; s2 += 2) {
+                    const v = [0,0,0,0];
+                    v[i] = s1;
+                    v[(i+1)%4] = s2;
+                    verts.push(v);
+                }
+            }
+        }
+        return verts;
+    }
+    
+    function generate24CellEdges() {
+        const verts = generate24CellVertices();
+        const edges = [];
+        for (let i = 0; i < verts.length; i++) {
+            for (let j = i+1; j < verts.length; j++) {
+                let dist = 0;
+                for (let k = 0; k < 4; k++) {
+                    dist += Math.pow(verts[i][k] - verts[j][k], 2);
+                }
+                if (Math.abs(dist - 2) < 0.1) {
+                    edges.push([i, j]);
+                }
+            }
+        }
+        return edges;
+    }
+    
+    function generateHopfFiber(resolution) {
+        const verts = [];
+        for (let i = 0; i < resolution; i++) {
+            const theta = (i / resolution) * Math.PI * 2;
+            for (let j = 0; j < resolution; j++) {
+                const phi = (j / resolution) * Math.PI * 2;
+                // Hopf fibration parameterization
+                const x = Math.cos(theta) * Math.sin(phi);
+                const y = Math.sin(theta) * Math.sin(phi);
+                const z = Math.cos(phi);
+                const w = Math.sin(theta/2) * Math.sin(phi/2);
+                verts.push([x, y, z]); // Project to 3D
+            }
+        }
+        return verts;
+    }
+    
+    function generateHopfEdges(resolution) {
+        const edges = [];
+        for (let i = 0; i < resolution; i++) {
+            for (let j = 0; j < resolution; j++) {
+                const current = i * resolution + j;
+                const nextI = (i + 1) % resolution;
+                const nextJ = (j + 1) % resolution;
+                edges.push([current, nextI * resolution + j]);
+                edges.push([current, i * resolution + nextJ]);
+            }
+        }
+        return edges;
+    }
+    
+    function generateSphereVertices(dimension, resolution) {
+        const verts = [];
+        if (dimension === 3) {
+            for (let i = 0; i < resolution; i++) {
+                const theta = (i / resolution) * Math.PI * 2;
+                for (let j = 0; j < resolution; j++) {
+                    const phi = (j / resolution) * Math.PI;
+                    const x = Math.sin(phi) * Math.cos(theta);
+                    const y = Math.sin(phi) * Math.sin(theta);
+                    const z = Math.cos(phi);
+                    verts.push([x, y, z]);
+                }
+            }
+        } else {
+            // Simple projection for higher dimensions
+            for (let i = 0; i < resolution * 4; i++) {
+                const v = [];
+                for (let d = 0; d < dimension; d++) {
+                    v.push(Math.sin(i * (d+1) / resolution) * Math.cos(i * (d+1) / resolution));
+                }
+                verts.push(v.slice(0, 3));
+            }
+        }
+        return verts;
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // THE TRANSFORMER: Delta Law Implementation
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    let state = [0, 1, 2, 3, 4, 5, 6, 7]; // Initial state
+    let stepCount = 0;
+    let running = true;
+    let lastTime = 0;
+    let frameCount = 0;
+    
+    function rotl(arr, n) {
+        n = n % arr.length;
+        return [...arr.slice(n), ...arr.slice(0, n)];
+    }
+    
+    function rotr(arr, n) {
+        n = n % arr.length;
+        return [...arr.slice(arr.length - n), ...arr.slice(0, arr.length - n)];
+    }
+    
+    function xor(arr1, arr2) {
+        return arr1.map((v, i) => v ^ arr2[i]);
+    }
+    
+    // Delta law: rotl(x,1) XOR rotl(x,3) XOR rotr(x,2) XOR C
+    function delta(state, C) {
+        const t1 = rotl(state, 1);
+        const t3 = rotl(state, 3);
+        const tr2 = rotr(state, 2);
+        const x1 = xor(t1, t3);
+        const x2 = xor(x1, tr2);
+        return x2.map(v => v ^ C);
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // THE STREAM: Self-describing symbol stream
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    const stream = [];
+    const MAX_STREAM_LENGTH = 64;
+    
+    function addToStream(symbol) {
+        stream.push(symbol);
+        if (stream.length > MAX_STREAM_LENGTH) {
+            stream.shift();
+        }
+        updateStreamDisplay();
+    }
+    
+    function updateStreamDisplay() {
+        const display = document.getElementById('stream-display');
+        display.innerHTML = stream.map((s, i) => {
+            const name = GEOMETRY_MAP[s] ? GEOMETRY_MAP[s].name : 'unknown';
+            return `<span style="color:${i === stream.length-1 ? '#ff0' : '#0ff'}">${name}</span>`;
+        }).join(' → ');
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // WEBGL RENDERING
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    const canvas = document.getElementById('canvas');
+    const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+    
+    if (!gl) {
+        document.getElementById('status').textContent = 'WebGL not supported!';
+        throw new Error('WebGL not supported');
+    }
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.enable(gl.DEPTH_TEST);
+    gl.enable(gl.CULL_FACE);
+    
+    const vsSource = `#version 300 es
+    precision highp float;
+    in vec3 a_position;
+    in vec3 a_color;
+    uniform mat4 u_projection;
+    uniform mat4 u_view;
+    uniform mat4 u_model;
+    uniform float u_time;
+    out vec3 v_color;
+    
+    void main() {
+        vec3 pos = a_position;
+        pos.x += sin(u_time + pos.y * 2.0) * 0.1;
+        gl_Position = u_projection * u_view * u_model * vec4(pos, 1.0);
+        v_color = a_color;
+    }`;
+    
+    const fsSource = `#version 300 es
+    precision highp float;
+    in vec3 v_color;
+    out vec4 fragColor;
+    void main() {
+        fragColor = vec4(v_color, 1.0);
+    }`;
+    
+    function createShader(gl, type, source) {
+        const shader = gl.createShader(type);
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            console.error(gl.getShaderInfoLog(shader));
+            return null;
+        }
+        return shader;
+    }
+    
+    const vs = createShader(gl, gl.VERTEX_SHADER, vsSource);
+    const fs = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+    const program = gl.createProgram();
+    gl.attachShader(program, vs);
+    gl.attachShader(program, fs);
+    gl.linkProgram(program);
+    gl.useProgram(program);
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // MATRIX UTILITIES
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    function perspective(fov, aspect, near, far) {
+        const f = 1.0 / Math.tan(fov / 2);
+        return [
+            f/aspect, 0, 0, 0,
+            0, f, 0, 0,
+            0, 0, (far+near)/(near-far), -1,
+            0, 0, (2*far*near)/(near-far), 0
+        ];
+    }
+    
+    function lookAt(eye, center, up) {
+        const z = normalize(subtract(eye, center));
+        const x = normalize(cross(up, z));
+        const y = cross(z, x);
+        return [
+            x[0], y[0], z[0], 0,
+            x[1], y[1], z[1], 0,
+            x[2], y[2], z[2], 0,
+            -dot(x,eye), -dot(y,eye), -dot(z,eye), 1
+        ];
+    }
+    
+    function identity() {
+        return [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1];
+    }
+    
+    function rotateY(angle) {
+        const c = Math.cos(angle), s = Math.sin(angle);
+        return [c,0,s,0, 0,1,0,0, -s,0,c,0, 0,0,0,1];
+    }
+    
+    function rotateX(angle) {
+        const c = Math.cos(angle), s = Math.sin(angle);
+        return [1,0,0,0, 0,c,-s,0, 0,s,c,0, 0,0,0,1];
+    }
+    
+    function multiply(a, b) {
+        const r = [];
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                let sum = 0;
+                for (let k = 0; k < 4; k++) sum += a[i*4+k] * b[k*4+j];
+                r.push(sum);
+            }
+        }
+        return r;
+    }
+    
+    function subtract(a, b) { return [a[0]-b[0], a[1]-b[1], a[2]-b[2]]; }
+    function cross(a, b) { return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]; }
+    function dot(a, b) { return a[0]*b[0] + a[1]*b[1] + a[2]*b[2]; }
+    function normalize(v) { const l = Math.sqrt(dot(v,v)); return [v[0]/l, v[1]/l, v[2]/l]; }
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // BUILD GEOMETRY BUFFERS
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    const posBuffer = gl.createBuffer();
+    const colorBuffer = gl.createBuffer();
+    
+    function updateGeometryBuffers() {
+        // Collect all vertices and colors from stream geometries
+        const positions = [];
+        const colors = [];
+        
+        stream.forEach((symbol, idx) => {
+            const geom = GEOMETRY_MAP[symbol];
+            if (!geom || geom.vertices.length === 0) return;
+            
+            const offset = (idx - stream.length/2) * 0.5;
+            
+            // Add vertices
+            geom.vertices.forEach((v, vi) => {
+                // Take first 3 dimensions, offset by position in stream
+                positions.push(v[0] * 0.3 + offset, v[1] * 0.3, v[2] * 0.3);
+                
+                // Color based on geometry type and position
+                const c = geom.color;
+                colors.push(c[0], c[1], c[2]);
+            });
+        });
+        
+        if (positions.length === 0) return;
+        
+        gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.DYNAMIC_DRAW);
+        
+        gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.DYNAMIC_DRAW);
+        
+        return positions.length / 3;
+    }
+    
+    let vertexCount = 0;
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // RENDER LOOP
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    let time = 0;
+    
+    function render(timestamp) {
+        // FPS counter
+        frameCount++;
+        if (timestamp - lastTime >= 1000) {
+            document.getElementById('fps').textContent = `FPS: ${frameCount}`;
+            frameCount = 0;
+            lastTime = timestamp;
+        }
+        
+        // Update state if running
+        if (running) {
+            state = delta(state, 0x02); // C = STX
+            stepCount++;
+            
+            // Add current state as symbol to stream
+            const symbol = 0x10100 + (state[0] % 16); // Map state to Aegean range
+            addToStream(symbol);
+            
+            vertexCount = updateGeometryBuffers();
+        }
+        
+        time += 0.01;
+        
+        gl.clearColor(0, 0, 0, 1);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        
+        const aspect = canvas.width / canvas.height;
+        const projection = perspective(Math.PI / 4, aspect, 0.1, 100);
+        const view = lookAt([5, 3, 5], [0, 0, 0], [0, 1, 0]);
+        let model = identity();
+        model = multiply(model, rotateY(time * 0.3));
+        model = multiply(model, rotateX(time * 0.2));
+        
+        const uProjection = gl.getUniformLocation(program, 'u_projection');
+        const uView = gl.getUniformLocation(program, 'u_view');
+        const uModel = gl.getUniformLocation(program, 'u_model');
+        const uTime = gl.getUniformLocation(program, 'u_time');
+        
+        gl.uniformMatrix4fv(uProjection, false, projection);
+        gl.uniformMatrix4fv(uView, false, view);
+        gl.uniformMatrix4fv(uModel, false, model);
+        gl.uniform1f(uTime, time);
+        
+        const aPosition = gl.getAttribLocation(program, 'a_position');
+        const aColor = gl.getAttribLocation(program, 'a_color');
+        
+        gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
+        gl.enableVertexAttribArray(aPosition);
+        gl.vertexAttribPointer(aPosition, 3, gl.FLOAT, false, 0, 0);
+        
+        gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+        gl.enableVertexAttribArray(aColor);
+        gl.vertexAttribPointer(aColor, 3, gl.FLOAT, false, 0, 0);
+        
+        if (vertexCount > 0) {
+            gl.drawArrays(gl.POINTS, 0, vertexCount);
+        }
+        
+        requestAnimationFrame(render);
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // CONTROLS
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    function toggleRun() {
+        running = !running;
+        document.getElementById('status').textContent = running ? 'Running' : 'Paused';
+    }
+    
+    function resetStream() {
+        stream.length = 0;
+        state = [0, 1, 2, 3, 4, 5, 6, 7];
+        stepCount = 0;
+        updateStreamDisplay();
+    }
+    
+    function step() {
+        state = delta(state, 0x02);
+        stepCount++;
+        const symbol = 0x10100 + (state[0] % 16);
+        addToStream(symbol);
+        vertexCount = updateGeometryBuffers();
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // WORDNET LOOKUP
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    const GEOMETRY_NAMES = [
+        "point", "line", "triangle", "tetrahedron", "5-cell",
+        "8-cell", "16-cell", "24-cell", "120-cell", "600-cell"
+    ];
+    
+    async function lookupWord() {
+        const word = document.getElementById('word-input').value.trim().toLowerCase();
+        if (!word) return;
+        
+        document.getElementById('wordnet-results').innerHTML = '<span style="color:#ff0">Searching...</span>';
+        
+        try {
+            const response = await fetch(`wn-geometry.sh "${word}"`);
+            const text = await response.text();
+            
+            const lines = text.split('\n').filter(l => l.startsWith('(FS'));
+            
+            if (lines.length === 0) {
+                document.getElementById('wordnet-results').innerHTML = 
+                    '<span style="color:#f00">Word not found</span>';
+                return;
+            }
+            
+            // Parse first result
+            const stream = lines[0];
+            const codepoints = stream.match(/U\+([0-9A-F]{5})/g);
+            const geometries = codepoints.map(cp => {
+                const idx = parseInt(cp.slice(3), 16) - 0x10100;
+                return GEOMETRY_NAMES[idx] || 'unknown';
+            });
+            
+            // Extract depth info
+            const depthMatch = stream.match(/Depth (\d+)/);
+            const depth = depthMatch ? parseInt(depthMatch[1]) : 0;
+            const posMatch = stream.match(/POS (\w)/);
+            const pos = posMatch ? posMatch[1] : 'n';
+            
+            // Display results
+            let html = `<div class="stream-path">${stream}</div>`;
+            html += `<div class="synset-info">Depth: ${depth} | POS: ${pos} | Geometry: ${geometries[geometries.length-1]}</div>`;
+            html += `<div class="synset-info">Path: ${geometries.join(' → ')}</div>`;
+            
+            // Add geometries to stream
+            stream.length = 0;
+            codepoints.forEach(cp => {
+                const idx = parseInt(cp.slice(3), 16);
+                addToStream(idx);
+            });
+            
+            document.getElementById('wordnet-results').innerHTML = html;
+            
+        } catch (e) {
+            document.getElementById('wordnet-results').innerHTML = 
+                '<span style="color:#f00">Error: Run with local server</span>';
+        }
+    }
+    
+    // ═══════════════════════════════════════════════════════════════════════════
+    // INITIALIZATION
+    // ═══════════════════════════════════════════════════════════════════════════
+    
+    document.getElementById('axiom').textContent = AXIOM;
+    document.getElementById('delta').textContent = DELTA_LAW;
+    document.getElementById('period').textContent = PERIOD;
+    document.getElementById('prime').textContent = PRIME;
+    document.getElementById('chirality').textContent = 'Right-handed (CW)';
+    document.getElementById('state').textContent = state.join(', ');
+    document.getElementById('status').textContent = 'Running';
+    
+    // Initialize with some geometries
+    [0x10100, 0x10101, 0x10102, 0x10107, 0x10108, 0x10109].forEach(s => addToStream(s));
+    
+    requestAnimationFrame(render);
+    </script>
+</body>
+</html>

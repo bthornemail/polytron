@@ -1,4 +1,11 @@
 I'm starting over right now, everything else is just concepts.  i want to make a lisp interpreter with 
+i think it more pure cons than thatbecuase everything is a head, tail or set,
+
+in operation everthing is an open closure, closed closer or binary closure, meaning like it has resolves either an input, an output or a open set of data that can use the words like s-expression,m-expression or f-expression that the chirality the cardinality is like the words GS FS RS US C(O/1)(Codepoint Control Operator)
+which we can think of like
+GS(Group Set) FS(Function Set) RS(Rule Set) US(Unit Set) OS(Order Set)
+
+that way our lisp is a constrait based runtime execution evironment like a logic circuit diagram for a 4-bit carry lookahead binary adder design using only the AND, OR, and XOR logic gates and our pairwise constuction and deconstrution is like a two-graph over code point partitions  as a regular two-graph of declared High and Low Hexidecimal Codepoint Character Partitions since each pair of distinct vertices of Codepoints appear together in exactly two triples printed or recoreded in engineering notation or engineering form (also technical notation) is a version of scientific notation in which the exponent of ten is always selected to be divisible by three to match the common metric prefixes, i.e. scientific notation that aligns with powers of a thousand, so we can use binary code decimal of IEE754 in Duodecimal and/or Segistimal Numerology of Unicode 17 Codepoint Planes depending on bit mask of BOM and Consistent Overhead Byte Stuffing (COBS) is an algorithm for encoding data bytes that results in efficient, reliable, unambiguous packet framing regardless of packet content, thus making it easy for receiving applications to recover from malformed packets
 
 atoms of the language are 
 (1 2 3) 
@@ -35,6 +42,18 @@ There are only three constitutional symbol substrates:
 
 > Control, transport, ordering, separators.
 
+
+0	1	2	3	4	5	6	7	8	9	A	B	C	D	E	F
+0x	NUL	SOH	STX	ETX	EOT	ENQ	ACK	BEL BS HT LF VT FF CR SO  SI 
+1x	DLE	DC1	DC2	DC3	DC4	NAK	SYN	ETB	CAN EM SUB ESC FS GS RS US
+7x                                                                            DEL 
+> Changed or added in 1963 version
+> Changed in both 1963 version and 1965 draft
+
+Everything else is syntactic sugar or downstream projection.
+
+
+### ASCII (1977/1986)
 
 0	1	2	3	4	5	6	7	8	9	A	B	C	D	E	F
 0x	NUL	SOH	STX	ETX	EOT	ENQ	ACK	BEL BS HT LF VT FF CR SO  SI 
@@ -82,31 +101,21 @@ U+28Fx	⣰	⣱	⣲	⣳	⣴	⣵	⣶	⣷	⣸	⣹	⣺	⣻	⣼	⣽	⣾	⣿
 
 Virtual address witness, ordinal symbolic indexing.
 
-> Official Unicode Consortium code chart (PDF)
+Aegean Numbers is a Unicode block containing punctuation, number, and unit characters for Linear A, Linear B, and the Cypriot syllabary, together Aegean numerals.[3]
 
+Aegean Numbers[1][2]
+Official Unicode Consortium code chart (PDF)
  	0	1	2	3	4	5	6	7	8	9	A	B	C	D	E	F
-U+1010x	 	 	 					𐄇	𐄈	𐄉	𐄊	𐄋	𐄌	𐄍	𐄎	𐄏
+U+1010x	𐄀	𐄁	𐄂					𐄇	𐄈	𐄉	𐄊	𐄋	𐄌	𐄍	𐄎	𐄏
 U+1011x	𐄐	𐄑	𐄒	𐄓	𐄔	𐄕	𐄖	𐄗	𐄘	𐄙	𐄚	𐄛	𐄜	𐄝	𐄞	𐄟
 U+1012x	𐄠	𐄡	𐄢	𐄣	𐄤	𐄥	𐄦	𐄧	𐄨	𐄩	𐄪	𐄫	𐄬	𐄭	𐄮	𐄯
-U+1013x	𐄰	𐄱	𐄲	𐄳				
-> Notes
-> 1.^ As of Unicode version 17.0
-> 2.^ Grey areas indicate non-assigned code points
+U+1013x	𐄰	𐄱	𐄲	𐄳				𐄷	𐄸	𐄹	𐄺	𐄻	𐄼	𐄽	𐄾	𐄿
+Notes
+1.^ As of Unicode version 17.0
+2.^ Grey areas indicate non-assigned code points
 
 
-### ASCII (1977/1986)
 
-> Control, transport, ordering, separators.
-
-
-0	1	2	3	4	5	6	7	8	9	A	B	C	D	E	F
-0x	NUL	SOH	STX	ETX	EOT	ENQ	ACK	BEL BS HT LF VT FF CR SO  SI 
-1x	DLE	DC1	DC2	DC3	DC4	NAK	SYN	ETB	CAN EM SUB ESC FS GS RS US
-7x                                                                            DEL 
-> Changed or added in 1963 version
-> Changed in both 1963 version and 1965 draft
-
-Everything else is syntactic sugar or downstream projection.
 
 ╔═══════════════════════════════════════════════════════════════════════════════╗
 ║  GAUGE TRANSITION TABLE: ASCII CODEPOINTS AS GROUP ACTIONS                     ║

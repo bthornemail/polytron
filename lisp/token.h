@@ -127,10 +127,10 @@
 
 ;; Channel bars as Braille
 ;; Dot 1 = FS, Dot 2 = GS, Dot 3 = RS, Dot 4 = US
-(define bar-FS (braille-6dot 1 0 0 0 0 0))   ;; ⠁
-(define bar-GS (braille-6dot 0 1 0 0 0 0))   ;; ⠂
-(define bar-RS (braille-6dot 0 0 1 0 0 0))   ;; ⠄
-(define bar-US (braille-6dot 0 0 0 1 0 0))   ;; ⠈
+(define bar-FS #x2801)   ;; ⠁
+(define bar-GS #x2802)   ;; ⠂
+(define bar-RS #x2804)   ;; ⠄
+(define bar-US #x2808)   ;; ⠈
 
 (define (bar-for-channel channel)
   (cond 
@@ -220,7 +220,7 @@
       0
       (+ (* (slot-coefficient (car slots))
             (expt 60 (slot-position (car slots))))
-         (eval-slot-list (cdr slots))))))
+          (eval-slot-list (cdr slots)))))
 
 ;;; ============================================================
 ;;; EXPORTS

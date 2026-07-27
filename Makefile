@@ -22,7 +22,7 @@ DEVICES   := $(DEVICE_DIR)/tetra-ctrl.c $(DEVICE_DIR)/tetra-clock-qom.c $(DEVICE
 
 QEMU_PORT_BASE ?= 10001
 
-.PHONY: all clean help \
+.PHONY: all clean help verify \
         run run1 run2 run3 run4 pgm view \
         build-riscv build-tcg build-esp32 build-imimo build-virtctrl \
         launch-node1 launch-node2 launch-node3 launch-mesh \
@@ -250,3 +250,29 @@ help:
 	@echo "  make qom-inspect       - Query QOM tree"
 	@echo ""
 	@echo "  make clean             - Stop all nodes, clean files"
+
+# ============================================================
+# POLYTRON LOCAL VERIFICATION
+# ============================================================
+
+verify:
+	@echo "--- RUNNING STANDALONE LAYER 7.5 ACCELERATION AUDIT ---"
+	ghc -fno-code .omi/PolytronModel.hs
+	runghc -i.omi .omi/PolytronModelCheck.hs
+	cc -std=c99 -Wall -Wextra -pedantic -fsyntax-only .omi/polytron_accelerator_check.c
+	@file_count_omi=$$(find .omi -maxdepth 1 -type f | wc -l); \
+	if [ "$$file_count_omi" -ne 23 ]; then \
+		echo "ERROR: Substrate core has $$file_count_omi files, expected exactly 23."; \
+		exit 1; \
+	fi
+	@for doc in INTRODUCTION.md PROCESSOR_MODES.md REGISTER_LAYOUT.md; do \
+		if [ ! -f "docs/$$doc" ]; then \
+			echo "ERROR: Missing documentation anchor docs/$$doc."; \
+			exit 1; \
+		fi; \
+	done
+	@if [ -n "$$(find .omi -mindepth 2 -print -quit)" ]; then \
+		echo "ERROR: Forbidden nested paths detected under .omi/."; \
+		exit 1; \
+	fi
+	@echo "--- STANDALONE VERIFICATION PASSED: ACCELERATOR IMMUTABLE ---"

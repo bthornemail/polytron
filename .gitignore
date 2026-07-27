@@ -1,0 +1,3 @@
+# Layer 7.5 Polytron substrate rules.
+*.o
+!.omi/*.o

@@ -86,6 +86,7 @@ int synset_lookup[MAX_SYNSETS * 10];
 
 /* Statistics */
 int depth_histogram[MAX_DEPTH] = {0};
+int unreached = 0;
 int pos_histogram[256] = {0};
 
 /* Parse integer from string */
@@ -151,7 +152,9 @@ int extract_hypernym(char *line, int *child, int *parent) {
 
 /* Hash function for synset ID */
 int synset_hash(int id) {
-    return (id / 1000) % (MAX_SYNSETS * 10);
+    /* Synset ids come in long runs; id / 1000 sent whole runs to one slot and the
+       probing went quadratic. The id itself spreads them. */
+    return id % (MAX_SYNSETS * 10);
 }
 
 /* Add synset to lookup */
@@ -183,9 +186,11 @@ int depth_to_geometry(int depth, char pos) {
         case 'n': base = 0; break;  /* Noun: point starts */
         case 'v': base = 1; break;  /* Verb: line starts */
         case 'a': base = 2; break;  /* Adjective: triangle starts */
+        case 's': base = 2; break;  /* Adjective satellite: an adjective */
         case 'r': base = 3; break;  /* Adverb: tetrahedron starts */
         default:   base = 0;
     }
+    if (depth < 0) depth = 0; /* never reached from a root: placed at its base */
     int idx = base + depth;
     if (idx > 15) idx = 15;
     return idx;
@@ -197,45 +202,50 @@ void compute_depths() {
     int q_head = 0, q_tail = 0;
     int visited[MAX_SYNSETS] = {0};
     
-    /* Find root synsets (those with no hypernyms) */
-    /* For each synset, check if it's a child in any hypernym */
-    int is_child[MAX_SYNSETS] = {0};
+    /* Children are marked by synset index, not by synset id: ids run to about
+       400,000,000 and the arrays hold MAX_SYNSETS. Each parent's children are
+       linked once, so the search visits every hypernym link once. */
+    static int is_child[MAX_SYNSETS];
+    static int first_child[MAX_SYNSETS];
+    static int next_link[MAX_HYPERNYMS];
+    static int link_child[MAX_HYPERNYMS];
+    for (int i = 0; i < synset_count; i++) first_child[i] = -1;
     for (int i = 0; i < hypernym_count; i++) {
-        if (hypernyms[i].child < MAX_SYNSETS * 10) {
-            is_child[hypernyms[i].child] = 1;
-        }
+        int c = find_synset(hypernyms[i].child);
+        int p = find_synset(hypernyms[i].parent);
+        if (c < 0 || p < 0) continue;
+        is_child[c] = 1;
+        link_child[i] = c;
+        next_link[i] = first_child[p];
+        first_child[p] = i;
     }
-    
-    /* Find roots: synsets that are not children */
+
+    /* Roots: synsets that are nobody's child */
     for (int i = 0; i < synset_count; i++) {
-        if (!is_child[synsets[i].synset_id]) {
+        if (!is_child[i]) {
             synsets[i].depth = 0;
             queue[q_tail++] = i;
             visited[i] = 1;
         }
     }
-    
-    /* BFS */
+
+    /* BFS over each parent's linked children */
     while (q_head < q_tail) {
         int idx = queue[q_head++];
-        Synset *s = &synsets[idx];
-        
-        /* Find all children of this synset */
-        for (int i = 0; i < hypernym_count; i++) {
-            if (hypernyms[i].parent == s->synset_id) {
-                int child_idx = find_synset(hypernyms[i].child);
-                if (child_idx >= 0 && !visited[child_idx]) {
-                    synsets[child_idx].depth = s->depth + 1;
-                    visited[child_idx] = 1;
-                    queue[q_tail++] = child_idx;
-                }
+        for (int l = first_child[idx]; l >= 0; l = next_link[l]) {
+            int child_idx = link_child[l];
+            if (!visited[child_idx]) {
+                synsets[child_idx].depth = synsets[idx].depth + 1;
+                visited[child_idx] = 1;
+                queue[q_tail++] = child_idx;
             }
         }
     }
-    
+
     /* Count histogram */
     for (int i = 0; i < synset_count; i++) {
         int d = synsets[i].depth;
+        if (d < 0) { unreached++; continue; } /* never reached from a root: no depth */
         if (d >= MAX_DEPTH) d = MAX_DEPTH - 1;
         depth_histogram[d]++;
         pos_histogram[(int)synsets[i].pos]++;
@@ -433,8 +443,8 @@ void output_word_stream(const char *search_word) {
         }
         
         /* Output in order: root to leaf */
-        for (int p = path_len - 1; p >= 0; p++) {
-            Synset *ps = &synsets[p];
+        for (int p = path_len - 1; p >= 0; p--) {
+            Synset *ps = &synsets[path[p]];
             int gi = depth_to_geometry(ps->depth, ps->pos);
             printf("U+%04X ", AEGEAN_BASE + gi);
         }
@@ -444,7 +454,7 @@ void output_word_stream(const char *search_word) {
         /* Show hypernym path */
         printf("# Path: ");
         for (int p = path_len - 1; p >= 0; p--) {
-            Synset *ps = &synsets[p];
+            Synset *ps = &synsets[path[p]];
             if (p < path_len - 1) printf(" -> ");
             printf("%s(%d)", ps->words[0], ps->depth);
         }
@@ -511,9 +521,17 @@ int main(int argc, char *argv[]) {
         char word[64] = "";
         
         if (sscanf(line, "s(%d,%*d,'%63[^']',%c", &id, word, &pos) >= 1) {
+            /* One line per word: a synset already seen gains a word, not a new entry. */
+            int seen = find_synset(id);
+            if (seen >= 0) {
+                Synset *t = &synsets[seen];
+                if (t->word_count < 32) { strncpy(t->words[t->word_count], word, 63); t->words[t->word_count][63] = '\0'; t->word_count++; }
+                continue;
+            }
             Synset *s = &synsets[synset_count];
             s->synset_id = id;
-            s->pos = (sscanf(line + strlen(line) - 3, "%c", &pos) > 0) ? pos : 'n';
+            /* the part of speech is the field after the word, read by the sscanf above */
+            s->pos = pos;
             s->word_count = 1;
             strncpy(s->words[0], word, 63);
             s->words[0][63] = '\0';
